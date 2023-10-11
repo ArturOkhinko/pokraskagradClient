@@ -1,0 +1,219 @@
+.main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: color 1s;
+  width: 100%;
+}
+.wheel {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  border-radius: 10px;
+  max-width: calc(49% - 32px);
+  max-height: 70vh;
+  overflow: scroll;
+}
+.model {
+  font-size: 50px;
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.name {
+  margin: 0 10px 10px 17px;
+  font-size: 20px;
+}
+
+.mainText {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mainText img {
+  width: 40%;
+  margin: 10px;
+  border-radius: 10px;
+}
+.text {
+  font-size: 16px;
+}
+.linear {
+  width: 95%;
+  height: 1px;
+  align-self: center;
+  animation: hr 1s;
+}
+
+.wheel input {
+  width: 10%;
+  border-radius: 10px;
+  align-self: center;
+  margin: 10px;
+  text-align: center;
+}
+.inputDisc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.inputDisc i {
+  font-size: 24px;
+  margin-left: 10px;
+}
+.wheel button {
+  width: 40%;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px;
+  transition: width, height, background-color, 0.4s;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+}
+.button button {
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+.addToSum {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+.addToSumButton {
+  cursor: pointer;
+}
+.addToSumButton:hover {
+  background-color: rgb(0, 255, 51);
+}
+.adminBarButton {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+.price {
+  color: rgb(40, 170, 24);
+  overflow: scroll;
+  font-size: 40px;
+  margin: 10px;
+  max-width: 100%;
+  align-self: flex-end;
+}
+.aleshaFond {
+  font-size: 30px;
+  margin: 10px 0 0 20px;
+}
+.adminButton:hover {
+  background-color: rgb(26, 92, 113);
+  color: rgb(255, 255, 255);
+}
+.adminButton {
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.adminBar {
+  min-width: 100%;
+  margin: 10px;
+}
+.savePostInfo {
+  border: 1px solid white;
+  border-radius: 10px;
+  transition: background-color 0.4s;
+  cursor: pointer;
+}
+.savePostInfo:hover {
+  background-color: rgb(26, 92, 113);
+  color: white;
+}
+.inputAdmin {
+  font-size: 24px;
+}
+.inputAdmin input {
+  border-color: rgb(160, 57, 57);
+  width: 65px;
+  color: rgb(255, 255, 255);
+}
+.inputText input {
+  width: 100px;
+}
+.inputName input {
+  width: 100px;
+}
+.defaultValue {
+  display: flex;
+  align-items: center;
+}
+.sliderImg {
+  max-width: calc(100% - 20px);
+  margin: 10px;
+  overflow: scroll;
+  display: flex;
+}
+.priceAdmin {
+  align-items: center;
+  display: flex;
+}
+.inputText {
+  display: flex;
+  align-items: center;
+}
+.inputName {
+  display: flex;
+  align-items: center;
+}
+@keyframes hr {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 95%;
+  }
+}
+@media (max-width: 1300px) {
+  .wheel {
+    max-width: calc(49% - 32px);
+  }
+}
+@media (max-width: 900px) {
+  .mainText img {
+    width: 30%;
+  }
+  .wheel {
+    max-width: calc((100% - 32px));
+  }
+  .sliderImg img {
+    width: 40%;
+  }
+}
+@media (max-width: 500px) {
+  .defaultValue {
+    font-size: 16px;
+  }
+  .name {
+    font-size: 16px;
+  }
+  .inputDisc i {
+    font-size: 16px;
+  }
+  .priceAdmin {
+    font-size: 16px;
+  }
+  .inputName {
+    font-size: 16px;
+  }
+  .inputText {
+    font-size: 16px;
+  }
+  .adminButton {
+    min-width: calc(100% - 20px);
+    margin: 10px;
+  }
+  .aleshaFond {
+    font-size: 20px;
+  }
+}

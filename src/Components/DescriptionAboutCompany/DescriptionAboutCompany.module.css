@@ -1,0 +1,214 @@
+.topLine {
+  display: flex;
+  justify-content: space-between;
+  margin: 55px 20px 10px 20px;
+}
+
+.welcome {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.attract {
+  font-size: 24px;
+  margin: 20px 10px 10px 10px;
+  text-align: center;
+}
+.attract a {
+  color: red;
+  margin-left: 10px;
+}
+.mainSocial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+.social img {
+  width: 60px;
+  margin: 10px;
+}
+.minDescription {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 10px;
+  font-size: 20px;
+}
+
+.exemple {
+  max-width: 50%;
+  border-radius: 10px;
+}
+.exempleWheel {
+  margin: 20px 20px 0 20px;
+  border-radius: 10px;
+}
+.imagesExemple {
+  display: flex;
+  max-width: 100%;
+  overflow: scroll;
+}
+.imagesExemple img {
+  max-height: 500px;
+  box-shadow: 0 0 10px rgb(0, 187, 255);
+}
+.infoOfCompany {
+  cursor: pointer;
+  background-color: rgba(106, 106, 255, 0.5);
+  border-radius: 10px;
+  max-height: 160px;
+  overflow: scroll;
+}
+.descriptionOfCompany {
+  margin-bottom: 10px;
+}
+.infoOfCompany p {
+  margin: 20px;
+}
+.infoOfCompany summary {
+  margin-left: 10px;
+}
+.description {
+  width: 100%;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.visual {
+  display: flex;
+  width: 100%;
+}
+.visualText {
+  margin-left: 10px;
+  font-size: 24px;
+}
+.locationLink {
+  font-size: 27px;
+  width: 30%;
+  min-height: 240px;
+  max-height: 240px;
+  margin: 10px 0 10px 10px;
+  border: none;
+  border-radius: 20px;
+  transition: background-color 1s;
+  background-color: rgb(26, 92, 113);
+  cursor: pointer;
+}
+.locationLink:hover {
+  background-color: rgba(106, 106, 255, 0.5);
+}
+.locationLink .local {
+  list-style-type: none;
+  text-decoration: underline;
+}
+
+.locationLink p {
+  text-align: center;
+}
+.locationLink .planet {
+  font-size: 40px;
+  margin: 10px;
+}
+.images {
+  display: flex;
+  height: 260px;
+  overflow: scroll;
+  border-radius: 20px;
+  width: 70%;
+}
+
+.images img {
+  margin: 10px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgb(0, 187, 255);
+}
+
+@media (max-width: 1300px) {
+  .locationLink {
+    font-size: 20px;
+  }
+  .location {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .topLine {
+    flex-direction: column;
+  }
+  .exemple {
+    max-width: 100%;
+  }
+  .welcome {
+    width: 100%;
+  }
+  .infoOfCompany {
+    max-height: 240px;
+  }
+  .images {
+    width: 55%;
+  }
+  .locationLink {
+    width: 40%;
+  }
+  .descriptionOfCompany {
+    text-align: center;
+  }
+}
+@media (max-width: 700px) {
+  .location {
+    display: flex;
+    margin: 10px;
+  }
+  .visualText {
+    font-size: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .exemple {
+    margin: 0;
+    width: 100%;
+  }
+  .exempleWheel {
+    width: calc(100% - 45px);
+    margin: 10px 0 10px 10px;
+  }
+  .location {
+    flex-direction: column;
+  }
+  .locationLink {
+    font-size: 20px;
+    width: calc(100% - 20px);
+    margin: 10px;
+    min-height: 200px;
+  }
+  .visualText {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .visual {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .infoOfCompany {
+    margin-top: 10px;
+  }
+  .images {
+    width: calc(100% - 20px);
+    margin: 0 10px 0 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .attract {
+    font-size: 20px;
+  }
+}

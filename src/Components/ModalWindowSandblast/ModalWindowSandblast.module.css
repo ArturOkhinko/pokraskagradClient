@@ -1,0 +1,71 @@
+.formCreatedItem {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 11;
+}
+
+.inputAdmin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+  font-size: 22px;
+  margin: 10px;
+}
+.inputAdmin input {
+  width: 400px;
+  border: 1px solid white;
+  padding: 4px;
+  color: white;
+}
+.mainWindow {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save {
+  width: 400px;
+  height: 40px;
+  margin-top: 20px;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  border: 1px solid rgb(26, 92, 113);
+  border-radius: 10px;
+}
+
+.save:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(26, 92, 113);
+  border: 1px solid white;
+}
+
+@media (max-width: 700px) {
+  .mainWindow {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+  .inputAdmin {
+    font-size: 14px;
+    margin: 10px;
+  }
+  .inputAdmin input {
+    margin: 0 0 0 10px;
+  }
+}
+@media (max-width: 400px) {
+  .save {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+}

@@ -1,0 +1,47 @@
+.main {
+  display: flex;
+  overflow: scroll;
+  height: 400px;
+}
+
+.main .img {
+  max-height: 400px;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+}
+
+.img .exemple {
+  max-height: 100%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border-radius: 20px;
+}
+.silverBackground {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  z-index: 10;
+  transition: background-color 1s;
+  border-radius: 20px;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+.silverBackground:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.button {
+  width: calc(100% - 40px);
+  margin: 20px;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 1s;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.button:hover {
+  background-color: red;
+}

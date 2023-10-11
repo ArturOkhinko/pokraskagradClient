@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.main p {
+  font-size: 30px;
+  margin: 20px 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.main input {
+  margin-top: 10px;
+}
+.powderWheel {
+  width: 100%;
+}
+.service {
+  margin-top: 20px;
+}
+.services img {
+  border-radius: 20px;
+  margin-top: 10px;
+}
+.inputMain {
+  width: 40%;
+}
+@media (max-width: 1200px) {
+  .services {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 950px) {
+  .services {
+    margin: 40px 10px 20px 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .main p {
+    margin: 20px;
+    font-size: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .services {
+    margin: 40px 20px 20px 20px;
+    grid-template-columns: 1fr;
+  }
+  .main p {
+    margin: 10px;
+  }
+}
+@media (max-width: 510px) {
+  .services {
+    margin: 20px 0 0 0;
+    grid-template-columns: 1fr;
+  }
+  .main p {
+    font-size: 20px;
+    text-align: center;
+  }
+  .inputMain {
+    width: 60%;
+  }
+}
+@media (max-width: 420px) {
+  .main p {
+    font-size: 16px;
+  }
+  .inputMain {
+    width: 70%;
+  }
+}

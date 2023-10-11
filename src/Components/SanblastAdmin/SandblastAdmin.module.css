@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.pushService {
+  align-self: flex-end;
+  width: 200px;
+  height: 40px;
+  margin: 10px 20px 10px 10px;
+  border: 1px solid rgb(26, 92, 113);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  position: fixed;
+}
+
+.pushService:hover {
+  background-color: rgb(26, 92, 113);
+  color: rgb(255, 255, 255);
+  border: 1px solid white;
+}

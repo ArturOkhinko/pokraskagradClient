@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Balsamiq Sans", cursive;
+}
+.main {
+  background-color: rgb(26, 92, 113);
+  overflow: hidden;
+}
+.navBar {
+  z-index: 100;
+}
+
+.content {
+  margin-top: 45px;
+  min-height: 700px;
+}
+
+.footer {
+  min-width: 100%;
+  max-width: 100%;
+  background-color: rgb(36, 36, 36);
+  margin-top: 45px;
+}

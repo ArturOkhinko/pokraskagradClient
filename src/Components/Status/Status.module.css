@@ -1,0 +1,51 @@
+.danger {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: rgba(255, 132, 0, 0.5);
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 24;
+}
+.ok {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: rgba(30, 255, 0, 0.5);
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 24;
+}
+
+@media (max-width: 1200px) {
+  .danger {
+    font-size: 20px;
+  }
+  .ok {
+    font-size: 20px;
+  }
+}
+@media (max-width: 900px) {
+  .danger {
+    font-size: 16px;
+  }
+  .ok {
+    font-size: 16px;
+  }
+}
+@media (max-width: 400px) {
+  .danger {
+    font-size: 14px;
+  }
+  .ok {
+    font-size: 14px;
+  }
+}

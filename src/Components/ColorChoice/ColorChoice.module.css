@@ -1,0 +1,99 @@
+.colorChoice {
+  display: flex;
+  flex-direction: column;
+}
+.colorRal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.color {
+  margin: 0 10px 10px 10px;
+}
+.topLine {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+}
+.search {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  min-width: 30%;
+}
+.mySelect {
+  width: 100%;
+  margin-top: 10px;
+}
+.myInput {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.textInstruction {
+  margin: 10px;
+  font-size: 20px;
+}
+.link {
+  margin-left: 10px;
+  color: rgb(0, 191, 255);
+  transition: color 1s;
+}
+.link:hover {
+  color: azure;
+}
+@media (max-width: 1200px) {
+  .colorRal {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 940px) {
+  .colorRal {
+    grid-template-columns: 1fr 1fr;
+  }
+  .search {
+    min-width: 40%;
+  }
+  .textInstruction {
+    font-size: 16px;
+  }
+}
+@media (max-width: 850px) {
+  .colorRal {
+    grid-template-columns: 1fr 1fr;
+  }
+  .search {
+    width: 400px;
+  }
+  .mySelect {
+    width: 400px;
+  }
+  .myInput {
+    width: 400px;
+  }
+  .textInstruction {
+    font-size: 20px;
+  }
+  .topLine {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 520px) {
+  .colorRal {
+    grid-template-columns: 1fr;
+  }
+  .topLine {
+    width: 100%;
+    align-items: center;
+  }
+  .mySelect {
+    width: 80%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .myInput {
+    width: 80%;
+  }
+}

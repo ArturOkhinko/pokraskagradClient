@@ -1,0 +1,76 @@
+.mainLinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 90px;
+}
+.mainLinks .link {
+  background-color: rgb(0, 136, 255);
+  margin: 10px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 24px;
+  text-decoration: none;
+  color: rgb(26, 58, 100);
+  border-radius: 10px;
+}
+
+.link:hover {
+  background-color: rgb(0, 183, 255);
+  text-decoration: none;
+}
+.link img {
+  width: 40%;
+  align-self: flex-end;
+  margin: 10px;
+  border-radius: 10px;
+}
+.admin {
+  position: absolute;
+  top: 45px;
+  margin: 10px;
+  left: calc(100% - 160px);
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: rgb(26, 92, 113);
+  color: white;
+  cursor: pointer;
+}
+.admin:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(26, 92, 113);
+}
+.admin p {
+  margin: 2px;
+}
+@media (max-width: 800px) {
+  .mainLinks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 500px) {
+  .mainLinks {
+    grid-template-columns: 1fr 1fr;
+  }
+  .link img {
+    width: 50%;
+  }
+}
+@media (max-width: 460px) {
+  .mainLinks {
+    grid-template-columns: 1fr;
+    margin-top: 120px;
+  }
+  .link img {
+    width: 30%;
+  }
+}
+@media (max-width: 420px) {
+  .admin {
+    z-index: 30;
+  }
+}

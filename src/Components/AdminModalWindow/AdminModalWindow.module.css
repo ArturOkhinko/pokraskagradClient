@@ -1,0 +1,53 @@
+.main {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  overflow: scroll;
+}
+
+.mainPrice {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.close {
+  font-size: 45px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  align-self: flex-end;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  z-index: 40;
+}
+.close :hover {
+  color: rgb(255, 0, 0);
+}
+@media (max-width: 1200px) {
+  .mainPrice {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .mainPrice {
+    width: 70%;
+  }
+}
+@media (max-width: 600px) {
+  .mainPrice {
+    width: 100%;
+  }
+}

@@ -1,0 +1,217 @@
+.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
+  max-width: 100%;
+}
+.mainService {
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 0;
+}
+.name {
+  font-size: 24px;
+  margin: 0 10px 0 10px;
+  max-width: 65%;
+}
+.name p {
+  margin: 10px;
+}
+.topLine {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.topLine .searchInput {
+  margin: 24px 20px 20px 20px;
+  width: calc(100% - 40px);
+}
+
+.mainPrice {
+  display: flex;
+}
+.mainPrice button {
+  border: 1px solid white;
+}
+.price {
+  margin: 0 10px 0 0;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+}
+.mainService button {
+  margin: 0 10px 0 10px;
+  min-width: 200px;
+  height: 34px;
+  border-radius: 7px;
+  transition: width, background-color, 0.4s;
+  align-self: center;
+  cursor: pointer;
+}
+.mainPrice .button .adminButton:hover {
+  background-color: red;
+  color: white;
+}
+.mainService .button .addPrice:hover {
+  background-color: rgb(0, 255, 21);
+  transition: width, background-color, 0.4s;
+  color: rgb(0, 47, 255);
+}
+
+.socialMain {
+  margin-top: 40px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: 1/3;
+}
+.social {
+  display: flex;
+}
+.social img {
+  width: 40px;
+  margin: 10px;
+}
+@media (max-width: 1400px) {
+  .name {
+    font-size: 20px;
+  }
+  .mainService .price {
+    font-size: 30px;
+  }
+  .mainService button {
+    height: 40px;
+    min-width: 140px;
+    margin: 10px;
+  }
+}
+@media (max-width: 1200px) {
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    min-width: 100%;
+  }
+  .name {
+    font-size: 24px;
+  }
+  .mainService {
+    width: calc(100% - 40px);
+    margin: 0 20px 0 20px;
+  }
+  .mainService .price {
+    font-size: 40px;
+  }
+  .mainService button {
+    height: 40px;
+    min-width: 140px;
+    margin: 10px;
+  }
+}
+@media (max-width: 750px) {
+  .items {
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .mainService {
+    width: calc(100% - 20px);
+    margin: 0 10px 0 10px;
+  }
+  .mainService .price {
+    font-size: 30px;
+  }
+  .mainService button {
+    height: 40px;
+    min-width: 140px;
+    margin: 10px;
+  }
+}
+@media (max-width: 650px) {
+  .items {
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .name {
+    font-size: 24px;
+  }
+  .topLine {
+    justify-content: center;
+  }
+  .topLine input {
+    margin: 45px 10px 10px 10px;
+    width: calc(100% - 20px);
+  }
+  .mainService {
+    max-width: calc(100% - 2px);
+    margin: 0 10px 0 10px;
+  }
+  .mainPrice {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mainService {
+    flex-direction: column;
+  }
+  .mainService .price {
+    font-size: 30px;
+    margin: 0;
+  }
+  .mainService button {
+    height: 40px;
+    min-width: 160px;
+    font-size: 16px;
+    margin: 7px;
+  }
+}
+
+.topLineItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.topLineItem .price {
+  margin: 10px;
+}
+@media (max-width: 360px) {
+  .name {
+    font-size: 16px;
+  }
+  .mainService .price {
+    font-size: 24px;
+  }
+  .mainService button {
+    height: 34px;
+    min-width: 130px;
+    font-size: 16px;
+    margin: 10px;
+  }
+}
+@media (max-width: 310px) {
+  .button {
+    flex-direction: column;
+  }
+  .button button {
+    width: calc(100vw - 40px);
+  }
+}

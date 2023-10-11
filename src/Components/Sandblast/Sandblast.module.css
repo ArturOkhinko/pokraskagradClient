@@ -1,0 +1,48 @@
+.main {
+  margin-top: 10px;
+}
+.mainPrice {
+  width: 100%;
+}
+.serviceSandblast {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+@media (max-width: 1400px) {
+  .topLine p {
+    font-size: 24px;
+  }
+}
+@media (max-width: 1000px) {
+  .topLine {
+    flex-direction: column;
+  }
+  .topLine p {
+    font-size: 24px;
+    margin: 20px 10px 10px 10px;
+  }
+  .topLine input {
+    margin: 10px;
+    min-width: 97%;
+  }
+  .serviceSandblast {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .serviceSandblast {
+    width: 100%;
+    margin: 0;
+  }
+  .topLine {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .topLine p {
+    font-size: 20px;
+  }
+}

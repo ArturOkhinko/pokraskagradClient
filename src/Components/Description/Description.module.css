@@ -1,0 +1,148 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 10px;
+}
+.text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.buttonExpend {
+  margin: 10px;
+  width: 100px;
+  height: 30px;
+}
+.header {
+  margin: 0 0 0 10px;
+  max-width: 60%;
+}
+.open {
+  font-size: 24px;
+  margin: 10px;
+  transition: font-size, margin, 1s;
+  max-width: calc(100% - 20px);
+}
+.descriptionCompany {
+  max-width: 100%;
+}
+.open .images {
+  display: flex;
+  overflow: scroll;
+  height: 400px;
+  animation: images 1s;
+}
+.open img {
+  margin: 10px;
+}
+.close {
+  font-size: 0;
+  transition: font-size, margin, 1s;
+}
+.close img {
+  max-height: calc(100% - 40px);
+  margin: 10px;
+  transition: height 1s;
+}
+
+.close .images {
+  height: 0;
+  animation: imagesMin 1s;
+  display: flex;
+  overflow: scroll;
+}
+.images img {
+  box-shadow: 0 0 10px rgb(0, 187, 255);
+  border-radius: 10px;
+}
+.open .none {
+  max-height: 0;
+}
+
+.adminButton {
+  height: 24px;
+  background-color: rgb(255, 162, 0);
+  cursor: pointer;
+  transition: background-color 1s;
+  margin: 10px;
+}
+.adminButton:hover {
+  background-color: rgb(255, 0, 0);
+}
+@keyframes images {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 400px;
+  }
+}
+@keyframes imagesMinWidth {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 240px;
+  }
+}
+@keyframes imagesMinWidthMin {
+  0% {
+    height: 240px;
+  }
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes imagesMin {
+  0% {
+    height: 400px;
+  }
+  100% {
+    height: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .open {
+    font-size: 20px;
+  }
+}
+@media (max-width: 950px) {
+  .header {
+    font-size: 20px;
+  }
+  .button {
+    min-width: 100px;
+  }
+}
+@media (max-width: 700px) {
+  .header {
+    font-size: 16px;
+    margin: 10px;
+  }
+  .open {
+    font-size: 16px;
+  }
+}
+@media (max-width: 570px) {
+  .open .images {
+    height: 240px;
+    animation: imagesMinWidth 1s;
+  }
+  .close .images {
+    animation: imagesMinWidthMin 1s;
+  }
+}

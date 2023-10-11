@@ -1,0 +1,190 @@
+.main {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+}
+.topModalWindow {
+  display: flex;
+  align-items: center;
+  margin: 0 10px 0 10px;
+}
+.close {
+  position: fixed;
+  top: 10px;
+  left: 90%;
+  min-width: 55px;
+  max-width: 55px;
+  min-height: 55px;
+  max-height: 55px;
+  border-radius: 400px;
+  font-size: 40px;
+  border: none;
+  cursor: pointer;
+}
+.close .textClose {
+  margin: 0;
+}
+.close:hover {
+  background-color: red;
+}
+
+.items {
+  width: 700px;
+  min-height: 60px;
+  max-height: 500px;
+  overflow: scroll;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.items .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.item .openItem {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.removeItem {
+  height: 20px;
+  min-width: 40px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 0;
+}
+.infoPrice {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+}
+.infoPrice i {
+  margin: 0;
+}
+.infoPrice h4 {
+  display: flex;
+  align-items: center;
+}
+.infoPrice .priceWindow {
+  margin: 0 0 0 20px;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+}
+.social img {
+  width: 45px;
+  margin: 10px;
+}
+.main .welcomeText {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.items .conditional {
+  font-size: 20px;
+  margin-top: 18px;
+}
+@media (max-width: 900px) {
+  .topModalWindow {
+    width: 100%;
+    margin: 0 0 0 20px;
+  }
+  .items {
+    width: calc(100% - 80px);
+  }
+  .items i {
+    font-size: 24px;
+  }
+  .infoPrice i {
+    font-size: 24px;
+  }
+  .main .welcomeText {
+    font-size: 20px;
+    margin: 20px 60px 0 20px;
+  }
+  .conditional {
+    font-size: 20px;
+  }
+}
+@media (max-width: 685px) {
+  .item i {
+    font-size: 20px;
+  }
+  .item .openItem {
+    margin: 0;
+  }
+  .infoPrice i {
+    font-size: 20px;
+  }
+  .close {
+    left: 80%;
+  }
+  .items .conditional {
+    margin-top: 7px;
+  }
+}
+@media (max-width: 540px) {
+  .topModalWindow {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  .social {
+    position: static;
+    flex-direction: row;
+  }
+  .social img {
+    width: 40px;
+  }
+  .items {
+    max-height: 450px;
+    margin: 0;
+  }
+  .items .item {
+    margin-top: 20px;
+  }
+  .item i {
+    font-size: 16px;
+  }
+  .infoPrice i {
+    font-size: 16px;
+  }
+  .removeItem {
+    margin: 0;
+    height: 20px;
+  }
+  .main .welcomeText {
+    margin: 0 50px 0 50px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .item i {
+    font-size: 14px;
+  }
+
+  .infoPrice i {
+    font-size: 14px;
+  }
+  .items .conditional {
+    margin-top: 4px;
+  }
+}

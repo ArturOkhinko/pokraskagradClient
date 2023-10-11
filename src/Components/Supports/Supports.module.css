@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.support {
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .supports {
+    flex-direction: column;
+  }
+}

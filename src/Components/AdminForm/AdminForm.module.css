@@ -1,0 +1,88 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.registration {
+  border-radius: 20px;
+  min-height: 400px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+  text-align: center;
+}
+.header {
+  margin: 10px;
+}
+.inputs {
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+.inputs input {
+  max-width: 100%;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.main button {
+  width: 200px;
+  height: 40px;
+  transition: background-color 1s;
+  cursor: pointer;
+}
+.main button:hover {
+  background-color: rgb(26, 92, 113);
+  color: white;
+}
+.admin {
+  margin-top: 10px;
+  color: white;
+  max-width: 50%;
+}
+.warning {
+  color: rgb(255, 225, 0);
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
+.login {
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.good {
+  font-size: 24px;
+  color: rgb(40, 170, 24);
+  text-align: center;
+  margin: 10px;
+}
+.otherPage {
+  margin-top: 10px;
+}
+@media (max-width: 1000px) {
+  .registration {
+    width: 70%;
+  }
+  .admin {
+    max-width: 70%;
+  }
+}
+@media (max-width: 550px) {
+  .registration {
+    width: calc(100% - 20px);
+  }
+  .warning {
+    font-size: 16px;
+  }
+  .good {
+    font-size: 20px;
+  }
+  .admin {
+    max-width: calc((100% - 20px));
+    text-align: center;
+  }
+}
