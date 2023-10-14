@@ -42,15 +42,6 @@ export const ModalList: FC<ModalListProps> = ({ isOpen, setIsOpen }) => {
       opacity: 1,
     },
   };
-  console.log(
-    items
-      .map((element) => {
-        return element.text + "-" + element.price;
-      })
-      .join(",")
-  );
-  console.log(items);
-
   const whatsApp = React.useRef(
     "https://wa.me/79874440763?text=" +
       "Здравствуйте, хотел бы заказать у вас следующие услуги" +

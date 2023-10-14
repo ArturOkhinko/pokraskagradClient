@@ -19,7 +19,6 @@ const infoWheelsReducer = createSlice({
   initialState,
   reducers: {
     pushInfo(state, actions) {
-      console.log(actions.payload);
       state.info = actions.payload;
     },
   },

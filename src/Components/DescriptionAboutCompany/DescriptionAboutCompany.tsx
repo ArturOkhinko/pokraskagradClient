@@ -15,6 +15,7 @@ import exemple from "../../img/exemple.jpeg";
 import exempleWheel from "../../img/exmpleWheel.jpeg";
 import { useSelector } from "react-redux";
 import { FC } from "react";
+import { Social } from "../Social/Social";
 
 interface DescriptionAboutCompany {
   setIsOpen: (isOpen: boolean) => void;
@@ -43,23 +44,7 @@ export const DescriptionAboutCompany: FC<DescriptionAboutCompany> = ({
             <a>бесплатной доставке</a>, ценам или любого другого
           </p>
           <div className={style.mainSocial}>
-            <div className={style.phone} style={{ color: color }}>
-              8 (987) 444 07 63
-            </div>
-            <div className={style.social}>
-              <a href="https://vk.com/pokrasgrad">
-                <img src={VK} />
-              </a>
-              <a href="https://wa.me/79874440763">
-                <img src={WhatsApp} />
-              </a>
-              <a href="https://t.me/pokrasgrad">
-                <img src={Telegram} />
-              </a>
-              <a href="https://instagram.com/pokrasgrad?igshid=NTc4MTIwNjQ2YQ==">
-                <img src={Instogram} />
-              </a>
-            </div>
+            <Social />
           </div>
           <div className={style.minDescription}>
             <p className={style.descriptionOfCompany}>

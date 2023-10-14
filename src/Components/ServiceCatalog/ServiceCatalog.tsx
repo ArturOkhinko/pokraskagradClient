@@ -17,15 +17,15 @@ export const ServiceCatalog: FC<ServiceCatalog> = ({ serviceChoice }) => {
   return (
     <div className={style.mainServiceChoice}>
       {serviceChoice[0] ? (
-        serviceChoice.map((element) => (
-          <Link className={style.main} to={element.link}>
+        serviceChoice.map((element, index) => (
+          <Link className={style.main} to={element.link} key={index}>
             <div className={style.images}>
               <img src={element.img} />
             </div>
-            <p className={style.text} style={{ color: color }}>
+            <div className={style.text} style={{ color: color }}>
               <h3>{element.name}</h3>
               {element.text}
-            </p>
+            </div>
           </Link>
         ))
       ) : (

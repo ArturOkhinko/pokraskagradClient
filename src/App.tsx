@@ -32,7 +32,6 @@ export const App: FC = () => {
 
   const getInfoAboutUser = async () => {
     const userData = await adminService.getInfoAboutUser();
-    console.log(userData);
     if (
       userData &&
       userData.status &&

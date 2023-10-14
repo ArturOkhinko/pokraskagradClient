@@ -17,7 +17,6 @@ export default function Sandblast() {
   const getInfo = async () => {
     const sandblastInfo: SandblastInfo[] =
       await serverService.getInfoSandblast();
-    console.log(sandblastInfo);
     setPrice(
       sandblastInfo.map((e) => {
         return {

@@ -22,7 +22,7 @@
 .images img {
   width: 60%;
 }
-.main p {
+.main .text {
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -54,7 +54,7 @@
   }
 }
 @media (max-width: 1300px) {
-  .main p {
+  .main .text {
     font-size: 20px;
   }
 }
@@ -68,17 +68,17 @@
   .mainServiceChoice {
     grid-template-columns: 1fr;
   }
-  .main p {
+  .main .text {
     font-size: 20px;
   }
 }
 @media (max-width: 510px) {
-  .main p {
+  .main .text {
     font-size: 20px;
   }
 }
 @media (max-width: 400px) {
-  .main p {
+  .main .text {
     font-size: 16px;
   }
 }

@@ -76,6 +76,10 @@
   align-items: center;
   grid-column: 1/3;
 }
+.socialMain {
+  text-align: center;
+  color: white;
+}
 .social {
   display: flex;
 }

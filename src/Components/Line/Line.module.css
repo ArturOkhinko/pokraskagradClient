@@ -9,6 +9,7 @@
   width: 400px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(0, 187, 255);
+  margin: 10px;
 }
 .images .image {
   margin: 10px;
@@ -27,5 +28,12 @@
 @media (max-width: 440px) {
   .image {
     width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  .images img {
+    width: 150px;
+    margin: 0;
   }
 }

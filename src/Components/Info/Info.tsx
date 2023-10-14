@@ -17,10 +17,6 @@ export const Info: FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [news, setNews] = React.useState<News[]>([]);
 
-  const color = useSelector(
-    (state: ColorReducerType) => state.colorTheme.color
-  );
-
   const getInfoDescription = async () => {
     const info: InfoType[] = await serverService.getInfoDescriptionPost();
     setNews(

@@ -23,7 +23,6 @@ class ServerService {
   async getInfoDescription() {
     const responce = new ServerModule("/api/getInfo");
     const mainDescription = await responce.getInfo("description");
-    console.log(mainDescription);
     const validResponce: InfoOfLineType[] = mainDescription.responce?.map(
       (element: ResponceType) => {
         return {
@@ -34,7 +33,6 @@ class ServerService {
         };
       }
     );
-    console.log(validResponce);
     return validResponce;
   }
   async getInfoDescriptionPost() {

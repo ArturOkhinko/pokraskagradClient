@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import style from "../ColorRal/ColorRal.module.css";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { colorJSON } from "../../Data/ColorJSON";
 import { Loader } from "../Loader/Loader";
+import { Social } from "../Social/Social";
 
 interface ColorRalProps {
   sortedKind: string;
@@ -77,7 +77,7 @@ export const ColorRal: FC<ColorRalProps> = ({
       {searchAndSorted[0] ? (
         searchAndSorted.map((element, index) =>
           element.RGB ? (
-            <div className={style.colorRal}>
+            <div className={style.colorRal} key={index}>
               <div
                 className={style.color}
                 style={{ backgroundColor: `rgb(${element.RGB})` }}
@@ -97,7 +97,7 @@ export const ColorRal: FC<ColorRalProps> = ({
             нами, чтобы уточнить этот вопрос.
           </p>
           <div className={style.social}>
-            <p>8 (987) 444 07 63</p>
+            <Social />
           </div>
         </div>
       ) : null}

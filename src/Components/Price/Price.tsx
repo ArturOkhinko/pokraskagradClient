@@ -162,8 +162,8 @@ export const Price: FC<PriceProps> = React.memo(
                 ) : null}
                 {typeof element.img !== "string" && element.img ? (
                   <div className={style.sliderImg}>
-                    {element.img.map((element) => (
-                      <img src={element} />
+                    {element.img.map((element, index) => (
+                      <img src={element} key={index} />
                     ))}
                   </div>
                 ) : (

@@ -9,7 +9,7 @@
   margin-left: 40px;
 }
 .line {
-  width: 450px;
+  width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,12 +19,12 @@
 
 @media (max-width: 1100px) {
   .line {
-    width: 340px;
+    width: 380px;
   }
 }
 @media (max-width: 880px) {
   .line {
-    width: 340px;
+    width: 380px;
     margin-top: 20px;
   }
   .companyDescription {
@@ -33,7 +33,7 @@
 }
 @media (max-width: 800px) {
   .line {
-    width: 340px;
+    width: 380px;
     margin-top: 20px;
   }
   .companyDescription {
@@ -46,32 +46,15 @@
     flex-direction: column;
   }
   .line {
-    width: 420px;
+    width: 100%;
+    margin: 20px;
   }
   .companyDescription {
     text-align: center;
     margin: 0 40px 0 40px;
   }
 }
-@media (max-width: 510px) {
-  .line {
-    width: 410px;
-  }
-}
-@media (max-width: 440px) {
-  .line {
-    width: 340px;
-  }
-}
-@media (max-width: 440px) {
-  .line {
-    width: 340px;
-  }
-}
 @media (max-width: 390px) {
-  .line {
-    width: 340px;
-  }
   .companyDescription {
     font-size: 20px;
     margin: 0;

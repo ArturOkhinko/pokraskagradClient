@@ -32,7 +32,6 @@ export const TrukService = () => {
         img: truckWheelInfoImg[element.radius],
       };
     });
-    console.log(info);
     setPrice(price);
     dispatch(pushInfo(price));
   };
@@ -48,7 +47,7 @@ export const TrukService = () => {
     <div className={style.main}>
       <p style={{ color: color }}>
         Сдесь указана общая{" "}
-        <a className={style.underlineText}>цена за пескостуй и покрасску</a>{" "}
+        <a className={style.underlineText}>цена за пескостуй и покраску</a>{" "}
         дисков, так как нет смысла красить их не отпескоструев. Если вас
         интерисует,{" "}
         <a className={style.noPoint}>только пескоструй, без покраски,</a> тогда
