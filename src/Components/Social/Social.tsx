@@ -6,14 +6,10 @@ import WhatsApp from "../../img/WhatsApp.png";
 import Telegram from "../../img/Telegram.png";
 import Instogram from "../../img/Instogram.png";
 
-interface Social {
-  message?: string;
-}
-export const Social: FC<Social> = (message) => {
+export const Social: FC = (message) => {
   const color = useSelector(
     (state: ColorReducerType) => state.colorTheme.color
   );
-  const whatsAppUrl = "https://wa.me/79874440763" + "?text=" + message || "";
   return (
     <div className={style.main}>
       <div className={style.phone} style={{ color: color }}>
@@ -23,7 +19,7 @@ export const Social: FC<Social> = (message) => {
         <a href="https://vk.com/pokrasgrad">
           <img src={VK} />
         </a>
-        <a href={whatsAppUrl}>
+        <a href={"https://wa.me/79874440763"}>
           <img src={WhatsApp} />
         </a>
         <a href="https://t.me/pokrasgrad">

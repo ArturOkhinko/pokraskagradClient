@@ -1,1 +1,1 @@
-export const urlToService = "http://193.222.62.122:3000";
+export const urlToService = "http://localhost:3000";

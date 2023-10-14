@@ -132,7 +132,7 @@ export const ServiceMain: FC<ServiceMainProps> = ({ price, deleteItem }) => {
               чтобы узнать цену за пескоструй вашей детали. Наша консультация
               бесплатна.
             </p>
-            <Social message={message} />
+            <Social />
           </div>
         )}
       </div>
