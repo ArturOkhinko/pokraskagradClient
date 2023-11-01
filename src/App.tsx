@@ -39,6 +39,7 @@ export const App: FC = () => {
       userData.accessToken !== ""
     ) {
       dispatch(login(userData));
+      console.log(userData);
     }
     if (userData.status && userData.status === 400) {
       const refreshResponce = await adminService.refresh();
