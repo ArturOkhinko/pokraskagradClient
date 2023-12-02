@@ -90,6 +90,7 @@ export const PowderPointAdmin: FC = () => {
             style={{ border: `1px solid ${color}` }}
             value={value}
             onChange={(e) => setValue(e.target.value)}
+            placeholder="Ссылка на картинку"
           />
           <button onClick={save} className={style.button}>
             Добавить

@@ -1,2 +1,1 @@
-export const urlToService = "http://localhost:3000";
-//"https://pokraskagradserver.ru"
+export const urlToService = "https://pokraskagradserver.ru";

@@ -171,7 +171,9 @@ export const SandblastAdmin = () => {
       <button className={style.pushService} onClick={() => setIsOpen(true)}>
         Добавить услугу
       </button>
-      <ServiceMain price={price} deleteItem={deleteItem} />
+      <div className={style.serviceMain}>
+        <ServiceMain price={price} deleteItem={deleteItem} />
+      </div>
     </div>
   );
 };

@@ -26,6 +26,7 @@ import { TruckWheelInfo } from "./Components/trukWheelInfoAdmin/TrukWheelInfoAdm
 import { SupportAdmin } from "./Components/SupportAdmin/SupportAdmin";
 import { SandblastAdmin } from "./Components/SanblastAdmin/SandblastAdmin";
 import { PowderPointAdmin } from "./Components/PowderPointAdmin/PowderPointAdmin";
+import { DiscountVK } from "./Components/DiscountVK/DiscountVK";
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -84,6 +85,7 @@ export const App: FC = () => {
           <Route path="/supportAdmin" element={<SupportAdmin />} />
           <Route path="/sandblastAdmin" element={<SandblastAdmin />} />
           <Route path="/powderPointAdmin" element={<PowderPointAdmin />} />
+          <Route path="/discountVK" element={<DiscountVK />} />
         </Routes>
       </div>
       <div className={style.footer}>

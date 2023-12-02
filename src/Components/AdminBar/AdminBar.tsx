@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import style from "./AdminBar.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +6,15 @@ import { adminService } from "../../services/adminServices";
 import { orange, white } from "../../store/reducers/colorReducer";
 import { login } from "../../store/reducers/accauntReducer";
 import { Status } from "../Status/Status";
+import { linkAdminBar, linksAdminBar } from "../../Data/LinksAdminBar";
 
-export const AdminBar = () => {
+export const AdminBar: FC = () => {
   const [res, setRes] = React.useState<{ status: number; message: string }>({
     status: 0,
     message: "",
   });
+  const [dataLinksForAdminBar, setDataLinksForAdminBar] =
+    useState<linkAdminBar[]>(linksAdminBar);
   const userData = useSelector((state: AccLogReducerType) => state.accLog.user);
   const role = userData.role;
   const dispatch = useDispatch();
@@ -32,46 +35,16 @@ export const AdminBar = () => {
   return (
     <div className={style.main}>
       {res.status !== 0 ? <Status responce={res} /> : null}
-      <div className={style.mainLinks}>
+      <div>
         {role === "admin" ? (
-          <>
-            <Link className={style.link} to="/mainDescription">
-              <div className={style.mainDescription}>
-                Первая страница описание
-              </div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/DescriptionCompanu.jpeg" />
-            </Link>
-            <Link className={style.link} to="/descriptionPost">
-              <div className={style.descriptionPost}>
-                Посты на странице с информацией
-              </div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/PostAboutCompany.jpeg" />
-            </Link>
-            <Link className={style.link} to="/wheelInfoAdmin">
-              <div className={style.sandblastWheels}>
-                Диски колес от легковых автомобилей
-              </div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/PowderWheel.jpeg" />
-            </Link>
-            <Link className={style.link} to="/truckWheelInfoAdmin">
-              <div className={style.sandblastCargoWheels}>
-                Диски от грузовых колес
-              </div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/PowderTrukWheel.jpeg" />
-            </Link>
-            <Link className={style.link} to="/supportAdmin">
-              <div className={style.supports}>Супорта</div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/supports.jpeg" />
-            </Link>
-            <Link className={style.link} to="/powderPointAdmin">
-              <div className={style.point}>Порошковая покраска</div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/exempleWorkes.jpeg" />
-            </Link>
-            <Link className={style.link} to="/sandblastAdmin">
-              <div className={style.sandblast}>Пескоструй других деталей</div>
-              <img src="https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/sandblast.jpeg" />
-            </Link>
-          </>
+          <div className={style.mainLinks}>
+            {dataLinksForAdminBar?.map((link) => (
+              <Link className={style.link} to={link.link}>
+                <div className={style.mainDescription}>{link.name}</div>
+                <img src={link.img} />
+              </Link>
+            ))}
+          </div>
         ) : (
           <>
             <Link to="/login">Войти как админ</Link>

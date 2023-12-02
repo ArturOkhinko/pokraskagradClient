@@ -4,18 +4,6 @@ type DeletData = {
   id: string;
   accessToken: string;
 };
-type GetInfoAboutUser = {
-  status: number;
-  message: string;
-  email: string;
-  role: string;
-};
-
-type OperationInfo = {
-  status: number;
-  message: string;
-};
-type UpdateInfo = (data: any, accessToken: string) => OperationInfo;
 
 type DataSupports = {
   name: string;
@@ -66,19 +54,22 @@ class AdminModule {
     password: string,
     code: string
   ) {
-    try {
-      const responce = await fetch(`${urlToService}/api${linkToFetch}`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ email, password, code }),
-      });
-      return responce.json();
-    } catch (e) {
-      console.log(e);
+    const responce = await fetch(`${urlToService}/api${linkToFetch}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ email, password, code }),
+    });
+    const json = await responce.json();
+    if (json.error) {
+      return {
+        message: json.message,
+        status: 400,
+      };
     }
+    return json;
   }
   async removeDescriptionPost(id: string, accessToken: string) {
     const data = await fetch(`${urlToService}/api/removeDescriptionPost`, {
@@ -220,6 +211,26 @@ class AdminModule {
       });
       return responce.json();
     } catch (e) {}
+  }
+  async searchUserWidthDiscount(promocode: string) {
+    try {
+      const responce = await fetch(
+        `${urlToService}/apiVk/getUserWidthDiscount`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            promocode,
+          }),
+        }
+      );
+      return responce.json();
+    } catch (e) {
+      return e;
+    }
   }
 }
 

@@ -34,28 +34,25 @@ export const AdminForm: FC<AdminForm> = ({
   const [code, setCode] = React.useState<string>("");
   const [res, setRes] = React.useState<{
     status: number;
-    message?: string;
-    role: string;
+    message: string;
+    role?: string;
   }>();
   const dispatch = useDispatch();
 
   const responce = async () => {
-    try {
-      const responce: status = await adminService.sign(
-        linkToFetch,
-        email,
-        password,
-        code
-      );
-      setRes({
-        status: responce.status,
-        message: responce.message,
-        role: responce.role,
-      });
-      dispatch(login(responce));
-    } catch (e) {
-      console.log(e);
-    }
+    const responce: status = await adminService.sign(
+      linkToFetch,
+      email,
+      password,
+      code
+    );
+    setRes({
+      status: responce.status,
+      message: responce.message,
+      role: responce.role,
+    });
+    console.log(responce);
+    dispatch(login(responce));
   };
 
   const passwordInput = (e: React.ChangeEvent<HTMLInputElement>) => {

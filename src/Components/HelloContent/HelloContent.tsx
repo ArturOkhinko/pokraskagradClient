@@ -4,6 +4,7 @@ import logo from "../../img/logo.jpeg";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import WhatsApp from "../../img/WhatsApp.png";
+import { SocialHome } from "../SocialHome/SocialHome";
 
 export const HelloContent: FC = () => {
   const color = useSelector(

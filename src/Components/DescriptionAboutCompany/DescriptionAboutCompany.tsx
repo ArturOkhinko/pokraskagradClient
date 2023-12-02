@@ -32,10 +32,16 @@ export const DescriptionAboutCompany: FC<DescriptionAboutCompany> = ({
       <div className={style.topLine} style={{ color: color }}>
         <div className={style.exemple}>
           <div className={style.imagesExemple}>
-            <img className={style.exempleWheel} src={exempleWheelsGold} />
             <img className={style.exempleWheel} src={exempleWheel} />
+            <img
+              className={style.exempleWheel}
+              src="https://storage.yandexcloud.net/pokraskagrad.ru/info/%D0%9C%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%202.jpeg"
+            />
             <img className={style.exempleWheel} src={exemple} />
-            <img className={style.exempleWheel} src={exempleWheelGold} />
+            <img
+              className={style.exempleWheel}
+              src="https://storage.yandexcloud.net/pokraskagrad.ru/info/%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%204.jpeg"
+            />
           </div>
         </div>
         <div className={style.welcome}>

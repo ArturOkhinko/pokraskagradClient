@@ -42,7 +42,14 @@ type PowderPoint = {
   status: number;
   message: string;
 };
-type RemoveDescriptionPost = (id: string, accessToken: string) => responceType;
+type error = {
+  message: string;
+  error: any[];
+};
+type userWidthDiscount = {
+  email: string;
+  discount: number;
+};
 class AdminService {
   async refresh() {
     const responce = await adminModule.refresh();
@@ -62,13 +69,24 @@ class AdminService {
     password: string,
     code: string
   ) {
-    const responce: SignResponce = await adminModule.sign(
-      linkToFetch,
-      email,
-      password,
-      code
-    );
-    return responce;
+    try {
+      const responce: SignResponce & error = await adminModule.sign(
+        linkToFetch,
+        email,
+        password,
+        code
+      );
+      return responce;
+    } catch (e) {
+      return {
+        role: "",
+        accessToken: "",
+        refreshToken: "",
+        email: "",
+        status: 400,
+        message: "",
+      };
+    }
   }
   async getInfoAboutUser() {
     const responce = await adminModule.getInfoAboutUser();
@@ -155,6 +173,11 @@ class AdminService {
       data,
       accessToken
     );
+    return operationInfo;
+  }
+  async searchUserWidthDiscount(promocode: string) {
+    const operationInfo: userWidthDiscount & error =
+      await adminModule.searchUserWidthDiscount(promocode);
     return operationInfo;
   }
 }

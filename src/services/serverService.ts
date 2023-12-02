@@ -23,7 +23,7 @@ class ServerService {
   async getInfoDescription() {
     const responce = new ServerModule("/api/getInfo");
     const mainDescription = await responce.getInfo("description");
-    const validResponce: InfoOfLineType[] = mainDescription.responce?.map(
+    const validResponce: InfoOfLineType[] = mainDescription.responce?.res.map(
       (element: ResponceType) => {
         return {
           id: element.id,
@@ -38,7 +38,7 @@ class ServerService {
   async getInfoDescriptionPost() {
     const responce = new ServerModule("/api/getInfo");
     const descriptionPost = await responce.getInfo("postDescription");
-    const validResponce = descriptionPost.responce.map(
+    const validResponce = descriptionPost.responce.res.map(
       (element: {
         id: string;
         header: string;
@@ -58,7 +58,7 @@ class ServerService {
   async getInfoWheel() {
     const responce = new ServerModule("/api/getInfo");
     const wheelInfo = await responce.getInfo("wheelInfo");
-    return wheelInfo.responce.sort((a: WheelInfoType, b: WheelInfoType) => {
+    return wheelInfo.responce.res.sort((a: WheelInfoType, b: WheelInfoType) => {
       if (a.radius > b.radius) {
         return -1;
       }
@@ -70,7 +70,7 @@ class ServerService {
   async getInfoTruckWheels() {
     const responce = new ServerModule("/api/getInfo");
     const wheelInfo = await responce.getInfo("truckInfo");
-    return wheelInfo.responce.sort((a: WheelInfoType, b: WheelInfoType) => {
+    return wheelInfo.responce.res.sort((a: WheelInfoType, b: WheelInfoType) => {
       if (a.radius > b.radius) {
         return -1;
       }
@@ -82,22 +82,22 @@ class ServerService {
   async getInfoSupports() {
     const responce = new ServerModule("/api/getInfo");
     const wheelInfo = await responce.getInfo("supports");
-    return wheelInfo.responce;
+    return wheelInfo.responce.res;
   }
   async getInfoSandblast() {
     const server = new ServerModule("/api/getInfo");
     const sandblastInfo = await server.getInfo("sandblast");
-    return sandblastInfo.responce;
+    return sandblastInfo.responce.res;
   }
   async getInfoMainDescription() {
     const server = new ServerModule("/api/getInfo");
     const sandblastInfo = await server.getInfo("description");
-    return sandblastInfo.responce;
+    return sandblastInfo.responce.res;
   }
   async getInfoPowderPoint() {
     const server = new ServerModule("/api/getInfo");
     const sandblastInfo = await server.getInfo("powderPoint");
-    return sandblastInfo.responce;
+    return sandblastInfo.responce.res;
   }
 }
 

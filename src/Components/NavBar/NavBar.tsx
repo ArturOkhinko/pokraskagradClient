@@ -22,6 +22,7 @@ export default function NavBar() {
     { color: "greenyellow", colorFunction: green },
     { color: "orange", colorFunction: orange },
   ]);
+
   type Role = {
     login: boolean;
     email: string;
@@ -30,6 +31,7 @@ export default function NavBar() {
   const role: Role = useSelector(
     (state: AccLogReducerType) => state.accLog.user
   );
+
   const color: string = useSelector(
     (state: ColorReducerType) => state.colorTheme.color
   );

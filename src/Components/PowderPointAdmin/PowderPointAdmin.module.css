@@ -10,3 +10,22 @@
   color: rgb(255, 255, 255);
   background-color: rgb(26, 92, 113);
 }
+.main input {
+  width: 400px;
+  margin: 10px;
+}
+@media (max-width: 600px) {
+  .main input {
+    width: 240px;
+    align-self: center;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .button {
+    margin: 10px;
+    width: 240px;
+    align-self: center;
+  }
+}

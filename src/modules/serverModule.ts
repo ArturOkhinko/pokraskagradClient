@@ -16,7 +16,6 @@ export class ServerModule {
         credentials: "include",
       }
     );
-    console.log(responce);
     return responce.json();
   }
 }

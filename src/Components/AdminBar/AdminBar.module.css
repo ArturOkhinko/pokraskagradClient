@@ -4,7 +4,6 @@
   margin-top: 90px;
 }
 .mainLinks .link {
-  background-color: rgb(0, 136, 255);
   margin: 10px;
   height: 200px;
   display: flex;
@@ -14,16 +13,19 @@
   text-align: center;
   font-size: 24px;
   text-decoration: none;
-  color: rgb(26, 58, 100);
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid white;
+}
+.link div {
   border-radius: 10px;
 }
-
 .link:hover {
-  background-color: rgb(0, 183, 255);
+  background-color: rgb(27, 104, 128);
   text-decoration: none;
 }
 .link img {
-  width: 40%;
+  width: 30%;
   align-self: flex-end;
   margin: 10px;
   border-radius: 10px;
@@ -48,6 +50,9 @@
   margin: 2px;
 }
 @media (max-width: 800px) {
+  .mainLinks .link {
+    font-size: 22px;
+  }
   .mainLinks {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -64,6 +69,9 @@
   .mainLinks {
     grid-template-columns: 1fr;
     margin-top: 120px;
+  }
+  .mainLinks .links {
+    font-size: 16;
   }
   .link img {
     width: 30%;

@@ -20,3 +20,11 @@
   color: rgb(255, 255, 255);
   border: 1px solid white;
 }
+@media (max-width: 810px) {
+  .pushService {
+    margin-top: 40px;
+  }
+  .serviceMain {
+    margin-top: 60px;
+  }
+}

@@ -149,7 +149,10 @@ export const Price: FC<PriceProps> = React.memo(
             <div
               className={style.wheel}
               key={element.id}
-              style={{ border: `1px solid ${color}` }}
+              style={{
+                border: `1px solid ${color}`,
+                overflow: isOpen ? "scroll" : "hidden",
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className={style.mainText}>
