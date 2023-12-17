@@ -14,14 +14,17 @@
   max-width: 100%;
   margin: 0;
 }
+
 .name {
   font-size: 24px;
   margin: 0 10px 0 10px;
-  max-width: 50%;
+  max-width: 60%;
 }
+
 .name p {
   margin: 10px;
 }
+
 .topLine {
   display: flex;
   justify-content: flex-end;
@@ -29,46 +32,51 @@
 }
 
 .topLine .searchInput {
-  margin: 24px 20px 20px 20px;
-  width: calc(100% - 40px);
+  width: 25%;
+  background-color: silver;
+  border: none;
+  height: 40px;
+  margin: 10px 20px 10px 10px;
 }
 
 .mainPrice {
   display: flex;
 }
-.mainPrice button {
-  border: 1px solid white;
-}
 .price {
   margin: 0 10px 0 0;
-  font-size: 40px;
+  font-size: 24px;
   display: flex;
   align-items: center;
-  max-width: 40%;
+  max-width: 30%;
 }
 
-.button {
-  display: flex;
-  flex-direction: column;
-}
-.mainService button {
-  margin: 0 10px 0 10px;
-  min-width: 200px;
+.mainService .adminButton {
+  margin: 0 10px 0 0;
+  min-width: 60px;
   height: 34px;
   border-radius: 7px;
   transition: width, background-color, 0.4s;
   align-self: center;
   cursor: pointer;
-  margin: 10px;
+  border: 1px solid white;
 }
-.mainPrice .button .adminButton:hover {
+.addPrice {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 10px 10px 10px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.adminButton:hover {
   background-color: red;
   color: white;
 }
-.mainService .button .addPrice:hover {
-  background-color: rgb(0, 255, 21);
+.addPrice:hover {
+  background-color: rgba(52, 158, 110, 0.4);
   transition: width, background-color, 0.4s;
-  color: rgb(0, 47, 255);
 }
 
 .socialMain {
@@ -90,106 +98,6 @@
   width: 40px;
   margin: 10px;
 }
-@media (max-width: 1400px) {
-  .name {
-    font-size: 20px;
-  }
-  .mainService .price {
-    font-size: 30px;
-  }
-  .mainService button {
-    height: 40px;
-    min-width: 140px;
-    margin: 10px;
-  }
-}
-@media (max-width: 1200px) {
-  .items {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    min-width: 100%;
-  }
-  .name {
-    font-size: 24px;
-  }
-  .mainService {
-    width: calc(100% - 40px);
-    margin: 0 20px 0 20px;
-  }
-  .mainService .price {
-    font-size: 40px;
-  }
-  .mainService button {
-    height: 40px;
-    min-width: 140px;
-    margin: 10px;
-  }
-}
-@media (max-width: 750px) {
-  .items {
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    max-width: 100%;
-  }
-  .name {
-    font-size: 20px;
-  }
-  .mainService {
-    width: calc(100% - 20px);
-    margin: 0 10px 0 10px;
-  }
-  .mainService .price {
-    font-size: 30px;
-  }
-  .mainService button {
-    height: 40px;
-    min-width: 140px;
-    margin: 10px;
-  }
-}
-@media (max-width: 650px) {
-  .items {
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    max-width: 100%;
-  }
-  .name {
-    font-size: 24px;
-  }
-  .topLine {
-    justify-content: center;
-  }
-  .topLine input {
-    margin: 45px 10px 10px 10px;
-    width: calc(100% - 20px);
-  }
-  .mainService {
-    max-width: calc(100% - 2px);
-    margin: 0 10px 0 10px;
-  }
-  .mainPrice {
-    flex-direction: column;
-    align-items: center;
-  }
-  .mainService {
-    flex-direction: column;
-  }
-  .mainService .price {
-    font-size: 30px;
-    margin: 0;
-  }
-  .mainService button {
-    height: 40px;
-    min-width: calc(100vw - 50px);
-    font-size: 16px;
-    margin: 7px;
-  }
-}
-
 .topLineItem {
   display: flex;
   align-items: center;
@@ -200,12 +108,61 @@
 .topLineItem .price {
   margin: 10px;
 }
+@media (max-width: 1400px) {
+  .name {
+    font-size: 18px;
+  }
+  .mainService .price {
+    font-size: 22px;
+  }
+}
+@media (max-width: 1200px) {
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    min-width: 100%;
+  }
+  .mainService {
+    width: calc(100% - 40px);
+    margin: 0 20px 0 20px;
+  }
+}
+@media (max-width: 750px) {
+  .items {
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .name {
+    font-size: 16px;
+  }
+  .mainService {
+    width: calc(100% - 20px);
+    margin: 0 10px 0 10px;
+  }
+  .mainService .price {
+    font-size: 20px;
+  }
+  .topLine .searchInput {
+    margin: 10px;
+  }
+}
+@media (max-width: 650px) {
+  .topLine .searchInput {
+    width: 50%;
+    margin: 45px 10px 10px 10px;
+    width: calc(100% - 20px);
+  }
+}
 @media (max-width: 360px) {
   .name {
     font-size: 16px;
   }
   .mainService .price {
-    font-size: 24px;
+    font-size: 16px;
   }
   .mainService button {
     height: 34px;

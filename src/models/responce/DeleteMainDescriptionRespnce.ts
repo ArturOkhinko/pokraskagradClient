@@ -1,0 +1,3 @@
+interface DeleteMainDescriptionResponce {
+  message: string;
+}

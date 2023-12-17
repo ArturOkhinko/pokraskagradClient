@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { FC } from "react";
 import { Line } from "../Line/Line";
 import { useSelector } from "react-redux";
-import { serverService } from "../../services/serverService";
+import { ServerModule } from "../../modules/serverModule";
+import { mainDescriptionState } from "../../models/states/mainDescriptionState";
 
 type InfoOfLineType = {
   img: string[];
@@ -12,21 +13,15 @@ type InfoOfLineType = {
   description: string;
   id: string;
 };
-type ResponceType = {
-  id: string;
-  img: string;
-  header: string;
-  description: string;
-};
 
 export const InfoLine: FC = () => {
-  const [infoOfLine, setInfoOfLine] = React.useState<InfoOfLineType[]>();
+  const [infoOfLine, setInfoOfLine] =
+    React.useState<DescriptionPostResponce[]>();
 
   const getInfo = async () => {
-    const responce = await serverService.getInfoDescription();
-    setInfoOfLine(responce);
+    const data = await ServerModule.getInfoMainDescription();
+    setInfoOfLine(data.data);
   };
-
   React.useEffect(() => {
     getInfo();
   }, []);
@@ -68,7 +63,7 @@ export const InfoLine: FC = () => {
                 </motion.i>
               </motion.div>
               <motion.div className={style.line} variants={textAnimation}>
-                <Line images={element.img} />
+                <Line images={element.img.split(",")} />
               </motion.div>
             </motion.div>
           ))

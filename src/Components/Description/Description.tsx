@@ -2,21 +2,13 @@ import React from "react";
 import style from "./Description.module.css";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { adminService } from "../../services/adminServices";
-import { login } from "../../store/reducers/accauntReducer";
+import { mainDescriptionState } from "../../models/states/mainDescriptionState";
+import { newsDescriptionState } from "../../models/states/newsDescriptionState";
 
-type DescriptionsProps = {
-  header: string;
-  description: string;
-  img?: string[];
-  id: string;
-  isOpen: boolean;
-  actionName: string;
-};
 interface Description {
-  descriptionsProps: DescriptionsProps[];
-  setDescriptions: (props: DescriptionsProps[]) => void;
-  removeDescriptionPost?: (e: React.MouseEvent<HTMLElement>) => void;
+  descriptionsProps: newsDescriptionState[] | undefined;
+  setDescriptions: (props: newsDescriptionState[] | undefined) => void;
+  removeDescriptionPost?: (id: string) => void;
 }
 
 export const Description: FC<Description> = ({
@@ -27,19 +19,19 @@ export const Description: FC<Description> = ({
   const open = (e: React.MouseEvent<HTMLElement>) => {
     const id = Number(e.currentTarget.id);
     setDescriptions!(
-      descriptionsProps.map((element, index) => {
+      descriptionsProps?.map((element, index) => {
         if (index === id) {
           if (!element.isOpen) {
             return {
               ...element,
-              isOpen: !element.isOpen,
+              isOpen: true,
               actionName: "Свернуть",
             };
           }
           if (element.isOpen) {
             return {
               ...element,
-              isOpen: !element.isOpen,
+              isOpen: false,
               actionName: "Развернуть",
             };
           }
@@ -54,7 +46,7 @@ export const Description: FC<Description> = ({
 
   return (
     <div className={style.main}>
-      {descriptionsProps.map((element, index) => (
+      {descriptionsProps?.map((element, index) => (
         <div
           className={style.description}
           key={element.id}
@@ -89,8 +81,7 @@ export const Description: FC<Description> = ({
           {removeDescriptionPost ? (
             <button
               className={style.adminButton + " " + style.button}
-              id={element.id}
-              onClick={(e) => removeDescriptionPost!(e)}
+              onClick={() => removeDescriptionPost(element.id)}
             >
               Удалить
             </button>

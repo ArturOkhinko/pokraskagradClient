@@ -1,107 +1,64 @@
-import React from "react";
-import style from "./TrukWheelInfoAdmin.module.css";
-import { Price } from "../Price/Price";
-import { serverService } from "../../services/serverService";
-import { truckWheelInfoImg } from "../../Data/TruckWheelInfoImg";
-import { useDispatch, useSelector } from "react-redux";
-import { pushInfo } from "../../store/reducers/infoWheelsReducer";
-import { AdminModalWindow } from "../AdminModalWindow/AdminModalWindow";
-import { adminService } from "../../services/adminServices";
+import React, { useState } from "react";
 import { Status } from "../Status/Status";
-import { login, token } from "../../store/reducers/accauntReducer";
-
-type WheelInfoOfServer = {
-  defaultValue: number;
-  id: string;
-  name: string;
-  price: number;
-  radius: string;
-  text: string;
-};
-
-type PriceInfo = {
-  defaultValueInput: string;
-  priceInput: string;
-  id: string;
-  radius?: string;
-  text: string;
-  name: string;
-};
+import { WheelInfoResponse } from "../../models/responce/WheelInfoResponse";
+import { ServerModule } from "../../modules/serverModule";
+import { wheelAdminWindowState } from "../../models/states/wheelAdminWindowState";
+import { Price } from "../Price/Price";
+import { WheelAdminModalWindow } from "../WheelAdminModalWindow/WheelAdminModalWindow";
+import { status } from "../../models/status";
+import { AdminModule } from "../../modules/adminModule";
 
 export const TruckWheelInfo = () => {
-  const [price, setPrice] = React.useState<WheelPriceJSONType[]>();
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [priceInfo, setPriceInfo] = React.useState<PriceInfo>({
-    defaultValueInput: "",
-    priceInput: "",
-    id: "",
-    radius: "",
-    text: "",
-    name: "",
-  });
-  const [res, setRes] = React.useState<{ status: number; message: string }>({
-    status: 0,
-    message: "",
-  });
-  const dispatch = useDispatch();
-  const userInfo = useSelector((state: AccLogReducerType) => state.accLog.user);
+  const [trucks, setTrucks] = React.useState<WheelInfoResponse[]>([]);
+  const [adminWindowParams, setAdminWindowParams] =
+    useState<wheelAdminWindowState>();
+  const [res, setRes] = React.useState<status>({ status: 0 });
 
-  const getInfo = async () => {
-    const info = await serverService.getInfoTruckWheels();
-    const price: WheelPriceJSONType[] = info.map(
-      (element: WheelInfoOfServer) => {
-        return {
-          id: element.id,
-          price: element.price,
-          model: element.radius,
-          name: element.name,
-          text: element.text,
-          initialPriceCount: Number(element.defaultValue),
-          img: truckWheelInfoImg[element.radius],
-        };
-      }
-    );
-    setPrice(price);
-    dispatch(pushInfo(price));
+  const openModalWindow = (
+    id: string,
+    price: number,
+    initialPriceCount: number,
+    radius: string
+  ) => {
+    setAdminWindowParams({
+      isOpen: true,
+      id,
+      price,
+      initialPriceCount,
+      radius,
+    });
   };
 
-  const savePostInfo = async () => {
-    const updateInfo = {
-      id: priceInfo.id,
-      defaultValue: priceInfo.defaultValueInput,
-      radius: priceInfo.radius,
-      price: priceInfo.priceInput,
-      text: priceInfo.text,
-      wheelName: priceInfo.name,
-    };
-
-    const operationInfo = await adminService.updateInfoTruckWheels(
-      updateInfo,
-      userInfo.accessToken
+  const getInfo = async () => {
+    const response = await ServerModule.getInfoTruckWheel();
+    setTrucks(
+      response.data.sort((a, b) => Number(b.radius) - Number(a.radius))
     );
-
-    if (operationInfo.status === 200) {
-      setRes({ status: operationInfo.status, message: operationInfo.message });
-      setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-    }
-    if (operationInfo.status === 400) {
-      const refresh = async () => {
-        const userData = await adminService.refresh();
-        const operationInfo = await adminService.updateInfoTruckWheels(
-          updateInfo,
-          userData.accessToken
-        );
-        setRes({
-          status: operationInfo.status,
-          message: operationInfo.message,
-        });
-        dispatch(login(userData));
-        setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-      };
-      refresh();
+  };
+  const save = async () => {
+    if (!adminWindowParams) {
       return;
     }
-    console.log(operationInfo);
+    const response = await AdminModule.updateTruckWheelInfo(
+      adminWindowParams.initialPriceCount,
+      adminWindowParams.price,
+      adminWindowParams.id
+    );
+
+    setTrucks(
+      trucks.map((item) => {
+        if (item.id === adminWindowParams.id) {
+          return {
+            ...item,
+            price: adminWindowParams.price,
+            initialPriceCount: adminWindowParams.initialPriceCount,
+          };
+        }
+        return item;
+      })
+    );
+    setRes({ status: response.status });
+    setTimeout(() => setRes({ status: 0 }), 1000);
   };
 
   React.useEffect(() => {
@@ -110,31 +67,18 @@ export const TruckWheelInfo = () => {
 
   return (
     <div>
-      <Status responce={res} />
-      {price ? (
-        <>
-          <Price
-            price={price}
-            setPrice={setPrice}
-            isOpen={isOpen}
-            openWindow={setIsOpen}
-            priceInfo={priceInfo}
-            setPriceInfo={setPriceInfo}
-          />
-          <div className={style.adminModalWindow}>
-            <AdminModalWindow
-              price={[
-                price.find((e: WheelPriceJSONType) => e.id === priceInfo.id)!,
-              ]}
-              savePostInfo={savePostInfo}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              priceInfo={priceInfo}
-              setPriceInfo={setPriceInfo}
-            />
-          </div>
-        </>
-      ) : null}
+      <Status response={res} />
+      <Price
+        items={trucks}
+        setItems={setTrucks}
+        openAdminWindow={openModalWindow}
+      />
+      <WheelAdminModalWindow
+        setAdminWindowParams={setAdminWindowParams}
+        adminWindowParams={adminWindowParams}
+        setRes={setRes}
+        save={save}
+      />
     </div>
   );
 };

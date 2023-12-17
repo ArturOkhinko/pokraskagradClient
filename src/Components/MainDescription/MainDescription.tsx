@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./MainDescription.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { adminService } from "../../services/adminServices";
 import { Status } from "../Status/Status";
 import { InsertPost } from "../InsertPost/InsertPost";
-import { serverService } from "../../services/serverService";
-import { login } from "../../store/reducers/accauntReducer";
+import { AdminModule } from "../../modules/adminModule";
+import { ServerModule } from "../../modules/serverModule";
+import { status } from "../../models/status";
 
 type Description = {
   id: string;
@@ -13,21 +13,10 @@ type Description = {
   header: string;
   description: string;
 };
-type DescriptionData = {
-  id: string;
-  img: string;
-  header: string;
-  description: string;
-};
-
-type Status = {
-  status: number;
-  message: string;
-};
 
 export const MainDescription = () => {
   const [post, setPost] = React.useState<Description[]>([]);
-  const [res, setRes] = React.useState<Status>({ status: 0, message: "" });
+  const [res, setRes] = React.useState<status>({ status: 0 });
 
   const color = useSelector(
     (state: ColorReducerType) => state.colorTheme.color
@@ -36,32 +25,20 @@ export const MainDescription = () => {
   const accessToken = useSelector(
     (state: AccLogReducerType) => state.accLog.user.accessToken
   );
-  const dispatch = useDispatch();
 
   const removePost = async (e: React.MouseEvent<HTMLElement>) => {
     const id = e.currentTarget.id;
-    const responce = await adminService.deletMainDescription({
-      id,
-      accessToken,
+
+    const responce = await AdminModule.deleteMainDescription(id, accessToken);
+    if (!responce) {
+      setRes({ status: 400, message: "Ошибка, авторизуйтесь" });
+      setTimeout(() => setRes({ status: 0, message: "" }), 1000);
+      return;
+    }
+    setRes({ status: responce.status, message: responce.data.message });
+    setPost((post: Description[]) => {
+      return post.filter((element) => element.id !== id);
     });
-    if (responce.status === 200) {
-      setRes(responce);
-      setPost((post: Description[]) => {
-        return post.filter((element) => element.id !== id);
-      });
-    }
-    if (responce.status === 400) {
-      const refresh = await adminService.refresh();
-      dispatch(login(refresh));
-      const responce = await adminService.deletMainDescription({
-        id,
-        accessToken: refresh.accessToken,
-      });
-      setRes(responce);
-      setPost((post: Description[]) => {
-        return post.filter((element) => element.id !== id);
-      });
-    }
     setTimeout(() => setRes({ status: 0, message: "" }), 1000);
   };
 
@@ -83,10 +60,9 @@ export const MainDescription = () => {
   };
 
   const getInfo = async () => {
-    const description: DescriptionData[] =
-      await serverService.getInfoMainDescription();
+    const responce = await ServerModule.getInfoMainDescription();
     setPost(
-      description.map((element) => {
+      responce.data.map((element: any) => {
         return {
           ...element,
           img: element.img.split(","),
@@ -94,19 +70,21 @@ export const MainDescription = () => {
       })
     );
   };
+
   React.useLayoutEffect(() => {
     getInfo();
   }, []);
+
   return (
     <div className={style.main}>
-      {res?.status !== 0 ? <Status responce={res!} /> : null}
+      {res?.status !== 0 ? <Status response={res!} /> : null}
       <InsertPost
         url="/mainDescription"
         pushItemForClient={pushItemForClient}
       />
       <div className={style.allPost}>
         {post?.map((element) => (
-          <div className={style.mainPost}>
+          <div className={style.mainPost} key={element.id}>
             <div className={style.post}>
               <div className={style.text} style={{ color: color }}>
                 <i>{element.header}</i>
@@ -114,7 +92,9 @@ export const MainDescription = () => {
               </div>
               <div className={style.images}>
                 {element.img[0]
-                  ? element.img.map((img) => <img src={img} />)
+                  ? element.img.map((img, index) => (
+                      <img src={img} key={index} />
+                    ))
                   : null}
               </div>
             </div>

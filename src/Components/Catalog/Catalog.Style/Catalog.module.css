@@ -8,12 +8,11 @@
   justify-content: center;
   margin-top: 40px;
 }
-input {
-  height: 24px;
-  font-size: 16px;
-  background-color: rgba(100, 100, 100, 0);
-  border-radius: 10px;
-  padding: 2px;
+.input input {
+  width: 100%;
+  background-color: silver;
+  border: none;
+  height: 40px;
   width: calc(100% - 80px);
   max-width: 500px;
   margin: 0 40px 0 40px;

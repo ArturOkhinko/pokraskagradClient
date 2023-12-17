@@ -1,23 +1,29 @@
 import React, { FC, useState } from "react";
 import style from "./DiscountVK.module.css";
-import { adminModule } from "../../modules/adminModule";
-import { adminService } from "../../services/adminServices";
-type userWidthDiscount = {
-  email: string;
-  amountOfDiscount: number;
-};
+import { Status } from "../Status/Status";
+import { status } from "../../models/status";
+import { AdminModule } from "../../modules/adminModule";
+
 export const DiscountVK: FC = () => {
-  const [discountUser, setDiscountUser] = useState<userWidthDiscount>();
+  const [discountUser, setDiscountUser] = useState<searchUserWithDiscount>();
   const [promocode, setPromocode] = useState<string>();
+  const [res, setRes] = useState<status>({ status: 0 });
+
   const searchUserWidthDiscount = async () => {
-    if (promocode) {
-      const user = await adminService.searchUserWidthDiscount(promocode);
-      setDiscountUser({ email: user.email, amountOfDiscount: user.discount });
+    if (!promocode) {
+      setRes({ status: 400, message: "Введите данные" });
+      return;
     }
+    const response = await AdminModule.searchUserWithDiscount(promocode);
+    setDiscountUser({
+      email: response.data.email,
+      discount: response.data.discount,
+    });
   };
 
   return (
     <div className={style.discountVK}>
+      <Status response={res} />
       <div className={style.search}>
         <input
           className={style.inputPromoCode}
@@ -32,10 +38,12 @@ export const DiscountVK: FC = () => {
           поиск
         </button>
       </div>
-      <div className={style.user}>
-        <p>{discountUser?.email}:</p>
-        <p>{discountUser?.amountOfDiscount} %</p>
-      </div>
+      {discountUser ? (
+        <div className={style.user}>
+          <p>{discountUser?.email}:</p>
+          <p>{discountUser?.discount} %</p>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -18,7 +18,6 @@ import { Login } from "./Components/Login/Login";
 import { MainDescription } from "./Components/MainDescription/MainDescription";
 import { AdminBar } from "./Components/AdminBar/AdminBar";
 import { DescriptionPost } from "./Components/DescriptionPost/DescriptionPost";
-import { adminService } from "./services/adminServices";
 import { useDispatch } from "react-redux";
 import { login } from "./store/reducers/accauntReducer";
 import { WheelInfoAdmin } from "./Components/WheelInfoAdmin/WheelInfoAdmin";
@@ -27,35 +26,40 @@ import { SupportAdmin } from "./Components/SupportAdmin/SupportAdmin";
 import { SandblastAdmin } from "./Components/SanblastAdmin/SandblastAdmin";
 import { PowderPointAdmin } from "./Components/PowderPointAdmin/PowderPointAdmin";
 import { DiscountVK } from "./Components/DiscountVK/DiscountVK";
+import { AdminModule } from "./modules/adminModule";
 
 export const App: FC = () => {
   const dispatch = useDispatch();
-
   const getInfoAboutUser = async () => {
-    const userData = await adminService.getInfoAboutUser();
-    if (
-      userData &&
-      userData.status &&
-      userData.status === 200 &&
-      userData.accessToken !== ""
-    ) {
-      dispatch(login(userData));
-      console.log(userData);
-    }
-    if (userData.status && userData.status === 400) {
-      const refreshResponce = await adminService.refresh();
-      if (refreshResponce.status === 400) {
-        dispatch(login({ role: "", email: "", accessToken: "" }));
-        return;
+    try {
+      const userData = await AdminModule.getInfoAboutUser();
+      if (
+        userData &&
+        userData.status === 200 &&
+        userData.data.accessToken !== ""
+      ) {
+        dispatch(
+          login({
+            email: userData.data.user.email,
+            role: userData.data.user.role,
+            accessToken: userData.data.accessToken,
+          })
+        );
       }
-      dispatch(login(refreshResponce));
+    } catch (e) {
+      dispatch(
+        login({
+          email: "",
+          role: "",
+          accessToken: "",
+        })
+      );
     }
   };
 
   React.useEffect(() => {
     getInfoAboutUser();
   }, []);
-
   return (
     <div className={style.main}>
       <div className={style.NavBar}>

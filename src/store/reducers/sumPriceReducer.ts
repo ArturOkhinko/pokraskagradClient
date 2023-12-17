@@ -25,6 +25,7 @@ const sumPriceReducer = createSlice({
         id: actions.payload.id,
         price: actions.payload.price,
       });
+      state.sum = state.sum + actions.payload.price;
     },
     removePricePunct(state, actions: RemovePricePunctActionType) {
       state.items = state.items.filter(

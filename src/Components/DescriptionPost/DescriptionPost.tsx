@@ -1,13 +1,12 @@
 import React from "react";
 import style from "./DescriptionPost.module.css";
 import { Status } from "../Status/Status";
-import { adminService } from "../../services/adminServices";
 import { Description } from "../Description/Description";
 import { InsertPost } from "../InsertPost/InsertPost";
-import { serverService } from "../../services/serverService";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../store/reducers/accauntReducer";
 import { FC } from "react";
+import { ServerModule } from "../../modules/serverModule";
+import { AdminModule } from "../../modules/adminModule";
+import { newsDescriptionState } from "../../models/states/newsDescriptionState";
 
 type Description = {
   id: string;
@@ -20,61 +19,37 @@ type Description = {
 
 export const DescriptionPost: FC = () => {
   const [res, setRes] = React.useState({ status: 0, message: "" });
-  const [post, setPost] = React.useState<Description[]>([]);
+  const [posts, setPosts] = React.useState<newsDescriptionState[]>();
 
-  const userData = useSelector((state: AccLogReducerType) => state.accLog.user);
+  const removeDescriptionPost = async (id: string) => {
+    const response = await AdminModule.removeDescriptionPost(id);
+    if (response.status >= 200 && response.status < 300) {
+      setRes({ status: response.status, message: "Данные успешно удаленны" });
+    }
+    if (response.status >= 300) {
+      setRes({ status: response.status, message: "Ошибка" });
+    }
 
-  const dispatch = useDispatch();
-  const removeDescriptionPost = async (e: React.MouseEvent<HTMLElement>) => {
-    const id = e.currentTarget.id;
-    const data = await adminService.removeDescriptionPost(
-      id,
-      userData.accessToken
-    );
-    if (data.status === 400) {
-      const userData = adminService.refresh();
-      userData.then((res) => {
-        if (res.status === 400) {
-          setRes({
-            status: 400,
-            message: "пользователь не авторизован",
-          });
-          setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-          return;
-        }
-        dispatch(login(res));
-        const data = adminService.removeDescriptionPost(id, res.accessToken);
-        data.then((res) => {
-          if (res.status === 400) {
-            setRes(res);
-            setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-            return;
-          }
-          setRes(res);
-          setPost(post.filter((element) => element.id !== id));
-          setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-        });
-      });
-    }
-    if (data.status === 200) {
-      setRes(data);
-      setPost(post.filter((element) => element.id !== id));
-      setTimeout(() => setRes({ status: 0, message: "" }), 1000);
-    }
+    setPosts(posts?.filter((post) => post.id !== id));
+    setTimeout(() => setRes({ status: 0, message: "" }), 1000);
   };
+
   const getInfo = async () => {
-    const responce: Description[] =
-      await serverService.getInfoDescriptionPost();
-    console.log(responce);
-    setPost(
-      responce.map((element) => {
-        return {
-          ...element,
-          isOpen: false,
-          actionName: "Развернуть",
-        };
-      })
-    );
+    try {
+      const response = await ServerModule.getInfoPostDescription();
+      setPosts(
+        response.data.map((post) => {
+          return {
+            ...post,
+            img: post.img?.split(","),
+            isOpen: false,
+            actionName: "Развернуть",
+          };
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   React.useEffect(() => {
@@ -87,29 +62,31 @@ export const DescriptionPost: FC = () => {
     header: string;
     img: string;
   }) => {
-    setPost([
-      ...post,
-      {
-        id: data.id,
-        description: data.description,
-        header: data.header,
-        img: data.img?.split(",") || "null",
-        isOpen: false,
-        actionName: "Развернуть",
-      },
-    ]);
+    if (posts) {
+      setPosts([
+        ...posts,
+        {
+          id: data.id,
+          description: data.description,
+          header: data.header,
+          img: data.img?.split(",") || "null",
+          isOpen: false,
+          actionName: "Развернуть",
+        },
+      ]);
+    }
   };
   return (
     <div className={style.main}>
-      {res?.status !== 0 ? <Status responce={res!} /> : null}
+      {res?.status !== 0 ? <Status response={res!} /> : null}
       <InsertPost
         url="/descriptionPost"
         pushItemForClient={pushItemForClient}
       />
       <Description
-        descriptionsProps={post}
+        descriptionsProps={posts}
+        setDescriptions={setPosts}
         removeDescriptionPost={removeDescriptionPost}
-        setDescriptions={setPost}
       />
     </div>
   );

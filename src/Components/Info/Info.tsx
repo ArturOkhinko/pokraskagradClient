@@ -3,28 +3,23 @@ import style from "./info.Style/info.module.css";
 import { Description } from "../Description/Description";
 import { FC } from "react";
 import { ModalWindowMap } from "../ModalWindowMap/ModalWindowMap";
-import { useSelector } from "react-redux";
-import { serverService } from "../../services/serverService";
 import { DescriptionAboutCompany } from "../DescriptionAboutCompany/DescriptionAboutCompany";
+import { ServerModule } from "../../modules/serverModule";
+import { newsDescriptionState } from "../../models/states/newsDescriptionState";
 
-type InfoType = {
-  header: string;
-  description: string;
-  img?: string[];
-  id: string;
-};
 export const Info: FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [news, setNews] = React.useState<News[]>([]);
+  const [news, setNews] = React.useState<newsDescriptionState[]>();
 
   const getInfoDescription = async () => {
-    const info: InfoType[] = await serverService.getInfoDescriptionPost();
+    const info = await ServerModule.getInfoPostDescription();
     setNews(
-      info.map((element) => {
+      info.data.map((element) => {
         return {
           ...element,
           isOpen: false,
           actionName: "Развернуть",
+          img: element.img.split(","),
         };
       })
     );

@@ -3,18 +3,38 @@ import style from "./Status.module.css";
 import { FC } from "react";
 
 interface Status {
-  responce: {
-    message: string;
+  response: {
+    message?: string;
     status: number;
   };
 }
-export const Status: FC<Status> = ({ responce }) => {
+export const Status: FC<Status> = ({ response }) => {
   return (
     <div className={style.main}>
-      {responce.status > 0 ? (
-        <div className={responce.status === 400 ? style.danger : style.ok}>
-          {responce.message}
+      {response.status > 0 && response.message ? (
+        <div
+          className={
+            response.status >= 300 && response.status <= 500
+              ? style.danger + " " + style.status
+              : style.ok + " " + style.status
+          }
+        >
+          {response.message}
         </div>
+      ) : null}
+
+      {response.status >= 200 &&
+      response.status < 300 &&
+      response.message === undefined ? (
+        <div className={style.ok + " " + style.status}>Успешно</div>
+      ) : null}
+      {response.status === 401 && response.message === undefined ? (
+        <div className={style.danger + " " + style.status}>Авторизуйтесь</div>
+      ) : null}
+      {response.status > 401 &&
+      response.status <= 500 &&
+      response.message === undefined ? (
+        <div className={style.danger + " " + style.status}>Авторизуйтесь</div>
       ) : null}
     </div>
   );

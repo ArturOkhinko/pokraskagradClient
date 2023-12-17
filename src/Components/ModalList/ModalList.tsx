@@ -79,7 +79,9 @@ export const ModalList: FC<ModalListProps> = ({ isOpen, setIsOpen }) => {
                       whileInView="visible"
                       variants={textAnimation}
                     >
-                      <i className={style.openItem}>{element.text}</i>
+                      <i className={style.openItem}>
+                        {element.text} ({element.price} ₽)
+                      </i>
                       <button
                         className={style.removeItem}
                         id={element.id}

@@ -10,7 +10,12 @@
 .navBar {
   z-index: 100;
 }
-
+input {
+  height: 24px;
+  font-size: 16px;
+  background-color: rgba(100, 100, 100, 0);
+  border-radius: 10px;
+}
 .content {
   margin-top: 45px;
   min-height: 700px;

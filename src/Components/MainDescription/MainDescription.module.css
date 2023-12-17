@@ -93,9 +93,6 @@
   }
 }
 @media (max-width: 800px) {
-  .post {
-    flex-direction: column-reverse;
-  }
   .images {
     width: 60vw;
   }
@@ -109,8 +106,14 @@
   .newPost .description {
     grid-column: 1/5;
   }
+  .text {
+    font-size: 16px;
+  }
 }
 @media (max-width: 565px) {
+  .post {
+    flex-direction: column-reverse;
+  }
   .images {
     width: calc(100vw - 20px);
     margin: 10px 20px 10px 20px;

@@ -9,7 +9,11 @@
   flex-direction: column;
 }
 .main input {
-  margin-top: 10px;
+  width: 400px;
+  background-color: silver;
+  border: none;
+  height: 40px;
+  margin: 10px;
 }
 .powderWheel {
   width: 100%;

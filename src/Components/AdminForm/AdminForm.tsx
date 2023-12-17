@@ -4,7 +4,6 @@ import style from "./AdminForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../../store/reducers/accauntReducer";
-import { adminService } from "../../services/adminServices";
 
 interface AdminForm {
   header: string;
@@ -40,17 +39,6 @@ export const AdminForm: FC<AdminForm> = ({
   const dispatch = useDispatch();
 
   const responce = async () => {
-    const responce: status = await adminService.sign(
-      linkToFetch,
-      email,
-      password,
-      code
-    );
-    setRes({
-      status: responce.status,
-      message: responce.message,
-      role: responce.role,
-    });
     console.log(responce);
     dispatch(login(responce));
   };

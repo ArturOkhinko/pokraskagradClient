@@ -10,9 +10,9 @@ import { Price } from "../Price/Price";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { serverService } from "../../services/serverService";
-import { wheelInfoImg } from "../../Data/WheelInfoImg";
 import { pushInfo } from "../../store/reducers/infoWheelsReducer";
+import { WheelInfoResponse } from "../../models/responce/WheelInfoResponse";
+import { ServerModule } from "../../modules/serverModule";
 
 type WheelInfoOfServer = {
   defaultValue: number;
@@ -24,28 +24,15 @@ type WheelInfoOfServer = {
 };
 
 export const WheelInfo: FC = () => {
-  const [price, setPrice] = React.useState<WheelPriceJSONType[]>([]);
+  const [items, setItems] = React.useState<WheelInfoResponse[]>([]);
   const [isLoader, setIsLoader] = React.useState<boolean>(true);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     const getPrice = async () => {
-      const price: WheelInfoOfServer[] = await serverService.getInfoWheel();
-      const wheelPrice: WheelPriceJSONType[] = price.map(
-        (element: WheelInfoOfServer) => {
-          return {
-            id: element.id,
-            price: element.price,
-            model: element.radius,
-            name: element.name,
-            text: element.text,
-            initialPriceCount: element.defaultValue,
-            img: wheelInfoImg[element.radius],
-          };
-        }
-      );
-      setPrice(wheelPrice);
-      dispatch(pushInfo(wheelPrice));
+      const price = await ServerModule.getInfoWheel();
+      setItems(price.data);
+      dispatch(pushInfo(price.data));
     };
     getPrice();
   }, []);
@@ -68,7 +55,7 @@ export const WheelInfo: FC = () => {
         </Link>
       </p>
       <div className={style.wheels}>
-        <Price price={price} setPrice={setPrice} />
+        <Price items={items} setItems={setItems} />
       </div>
     </div>
   );

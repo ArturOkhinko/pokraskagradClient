@@ -1,237 +1,130 @@
-import { urlToService } from "../values/value";
+import $api from "../http/index";
+import { AxiosResponse } from "axios";
+import { AuthResponce } from "../models/responce/AuthResponse";
+import { NewPostRequest } from "../models/request/NewPostRequest";
+import { NewPostResponse } from "../models/responce/NewPostResponse";
+import { Alteration } from "../models/responce/Alteration";
+import $apiVK from "../http/VK";
 
-type DeletData = {
-  id: string;
-  accessToken: string;
-};
+export class AdminModule {
+  static async refresh(): Promise<AxiosResponse<RefreshResponce>> {
+    return $api.get<RefreshResponce>("/refresh");
+  }
+  static async createNewPost(
+    data: NewPostRequest,
+    url: string
+  ): Promise<AxiosResponse<NewPostResponse>> {
+    return $api.post<NewPostResponse>(url, {
+      data,
+    });
+  }
+  static async deleteMainDescription(
+    id: string,
+    accessToken: string
+  ): Promise<AxiosResponse<DeleteMainDescriptionResponce>> {
+    return $api.delete<DeleteMainDescriptionResponce>(
+      "/deleteMainDescription",
+      { data: { id, accessToken } }
+    );
+  }
+  static async logout(): Promise<AxiosResponse<DeleteMainDescriptionResponce>> {
+    return $api.get<DeleteMainDescriptionResponce>("/logout");
+  }
 
-type DataSupports = {
-  name: string;
-  id: string;
-  defaultValue: string;
-  price: number;
-  text: string;
-};
-type DataSandblast = {
-  name: string;
-  price: number;
-};
-class AdminModule {
-  async refresh() {
-    const responce = await fetch(`${urlToService}/api/refresh`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-    });
-    return responce.json();
+  static async login(
+    email: string,
+    password: string
+  ): Promise<AxiosResponse<AuthResponce>> {
+    return $api.post<AuthResponce>("/login", { email, password });
   }
-  async deleteMainDescription(data: DeletData) {
-    const responce = await fetch(`${urlToService}/api/deleteMainDescription`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-      credentials: "include",
-    });
-    return responce.json();
-  }
-  async logout() {
-    const responce = await fetch(`${urlToService}/api/logout`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    return responce.json();
-  }
-  async sign(
-    linkToFetch: string,
+  static async registration(
     email: string,
     password: string,
     code: string
-  ) {
-    const responce = await fetch(`${urlToService}/api${linkToFetch}`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ email, password, code }),
-    });
-    const json = await responce.json();
-    if (json.error) {
-      return {
-        message: json.message,
-        status: 400,
-      };
-    }
-    return json;
+  ): Promise<AxiosResponse<AuthResponce>> {
+    return $api.post<AuthResponce>("/registration", { email, password, code });
   }
-  async removeDescriptionPost(id: string, accessToken: string) {
-    const data = await fetch(`${urlToService}/api/removeDescriptionPost`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ id, accessToken }),
+
+  static async removeDescriptionPost(id: string): Promise<AxiosResponse<any>> {
+    return $api.delete<any>("/removeDescriptionPost", {
+      data: { id },
     });
-    return data;
   }
-  async wheelInfo(
-    defaultValue: number,
+
+  static async updateWheelInfo(
+    initialPriceCount: number,
     price: number,
-    accessToken: string,
-    text: string,
-    wheelName: string,
-    radius?: string
-  ) {
-    const wheelInfo = await fetch(`${urlToService}/api/wheelInfo`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        defaultValue,
+    id: string
+  ): Promise<AxiosResponse<any>> {
+    return $api.put<any>("/updateWheelInfo", {
+      data: {
+        id,
         price,
-        radius,
-        accessToken,
-        text,
-        wheelName,
-      }),
-    });
-    return wheelInfo.json();
-  }
-  async getInfoAboutUser() {
-    try {
-      const responce = await fetch(`${urlToService}/api/getInfoAboutUser`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      return responce.json();
-    } catch (e) {}
-  }
-
-  async updateInfoTruckWheels(data: any, accessToken: string) {
-    const operationInfo = await fetch(`${urlToService}/api/updateTruckInfo`, {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
+        initialPriceCount,
       },
-      body: JSON.stringify({ data, accessToken }),
     });
-    return operationInfo.json();
+  }
+  static async updateTruckWheelInfo(
+    initialPriceCount: number,
+    price: number,
+    id: string
+  ): Promise<AxiosResponse<any>> {
+    return $api.put<any>("/updateTruckInfo", {
+      data: {
+        id,
+        price,
+        initialPriceCount,
+      },
+    });
+  }
+  static async createNewItemInCatalog(
+    price: number,
+    name: string
+  ): Promise<AxiosResponse<Alteration>> {
+    return $api.post<Alteration>("/createNewItemInSandblast", {
+      data: {
+        price,
+        name,
+      },
+    });
+  }
+  static async deleteItemCatalog(id: string): Promise<AxiosResponse<any>> {
+    return $api.delete<any>("/deleteItemSandblast", {
+      data: {
+        id,
+      },
+    });
   }
 
-  async updateInfoSupports(data: DataSupports, accessToken: string) {
-    try {
-      const responce = await fetch(`${urlToService}/api/updateSupportsInfo`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          accessToken,
-        }),
-      });
-      return responce.json();
-    } catch (e) {}
+  static async addImgPowderPoint(
+    linkToImg: string
+  ): Promise<AxiosResponse<Alteration>> {
+    return $api.post<Alteration>("/addImgPowderPoint", {
+      data: {
+        linkToImg,
+      },
+    });
   }
-  async insertInfoSandblast(data: DataSandblast, accessToken: string) {
-    try {
-      const responce = await fetch(`${urlToService}/api/updateInfoSandblast`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          accessToken,
-        }),
-      });
-      return responce.json();
-    } catch (e) {}
+
+  static async removeImgPowderPoint(id: string): Promise<AxiosResponse<any>> {
+    return $api.delete<any>("/removeImgPowderPoint", {
+      data: {
+        id,
+      },
+    });
   }
-  async deleteInfoSandblast(data: { id: string }, accessToken: string) {
-    try {
-      const responce = await fetch(`${urlToService}/api/deleteInfoSandblast`, {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          accessToken,
-        }),
-      });
-      return responce.json();
-    } catch (e) {}
+  static async searchUserWithDiscount(
+    promocode: string
+  ): Promise<AxiosResponse<searchUserWithDiscount>> {
+    return $apiVK.post<searchUserWithDiscount>("/searchUserWithDiscount", {
+      data: {
+        promocode,
+      },
+    });
   }
-  async insertPowderPoint(data: { img: string }, accessToken: string) {
-    try {
-      const responce = await fetch(`${urlToService}/api/insertPowderPoint`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          accessToken,
-        }),
-      });
-      return responce.json();
-    } catch (e) {}
-  }
-  async deletePowderPoint(data: { id: string }, accessToken: string) {
-    try {
-      const responce = await fetch(`${urlToService}/api/deletePowderPoint`, {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          data,
-          accessToken,
-        }),
-      });
-      return responce.json();
-    } catch (e) {}
-  }
-  async searchUserWidthDiscount(promocode: string) {
-    try {
-      const responce = await fetch(
-        `${urlToService}/apiVk/getUserWidthDiscount`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            promocode,
-          }),
-        }
-      );
-      return responce.json();
-    } catch (e) {
-      return e;
-    }
+
+  static async getInfoAboutUser(): Promise<AxiosResponse<AuthResponce>> {
+    return $api.get<AuthResponce>("/getInfoAboutUser");
   }
 }
-
 export const adminModule = new AdminModule();

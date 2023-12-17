@@ -3,6 +3,7 @@ import style from "./AdminModalWindow.module.css";
 import { Price } from "../Price/Price";
 import { FC } from "react";
 import { BiX } from "react-icons/bi";
+import { WheelInfoResponse } from "../../models/responce/WheelInfoResponse";
 type PriceInfo = {
   defaultValueInput: string;
   priceInput: string;
@@ -12,7 +13,7 @@ type PriceInfo = {
   name: string;
 };
 type AdminModalWindow = {
-  price: WheelPriceJSONType[];
+  price: WheelInfoResponse[];
   savePostInfo: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   priceInfo: PriceInfo;
   setPriceInfo: (price: PriceInfo) => void;
@@ -27,7 +28,7 @@ export const AdminModalWindow: FC<AdminModalWindow> = ({
   isOpen,
   setIsOpen,
 }) => {
-  const [priceProps, setPriceProps] = React.useState<WheelPriceJSONType[]>();
+  const [priceProps, setPriceProps] = React.useState<WheelInfoResponse[]>();
   React.useEffect(() => {
     if (isOpen) {
       setPriceProps(price);
@@ -40,15 +41,10 @@ export const AdminModalWindow: FC<AdminModalWindow> = ({
           <button className={style.close} onClick={() => setIsOpen(false)}>
             <BiX />
           </button>
-          <div className={style.mainPrice} onClick={() => setIsOpen(false)}>
-            <Price
-              price={priceProps}
-              savePostInfo={savePostInfo}
-              priceInfo={priceInfo}
-              setPriceInfo={setPriceInfo}
-              isOpen={isOpen}
-            />
-          </div>
+          <div
+            className={style.mainPrice}
+            onClick={() => setIsOpen(false)}
+          ></div>
         </div>
       ) : null}
     </>

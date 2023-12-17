@@ -2,23 +2,19 @@ import React from "react";
 import style from "../PowderPoint/PowderPoint.module.css";
 import powder from "../../img/powder.jpg";
 import { useSelector } from "react-redux";
-import { PowderPointAdmin } from "../PowderPointAdmin/PowderPointAdmin";
 import { SliderImg } from "../SliderImg/SliderImg";
-import { serverService } from "../../services/serverService";
+import { PowderPointImgsResponse } from "../../models/responce/PowderPointImgsResponse";
+import { ServerModule } from "../../modules/serverModule";
 
-type Items = {
-  id: string;
-  img: string;
-};
 export const PowderPoint = () => {
-  const [items, setItems] = React.useState<Items[]>([]);
+  const [imgs, setImgs] = React.useState<PowderPointImgsResponse[]>([]);
   const color = useSelector(
     (state: ColorReducerType) => state.colorTheme.color
   );
 
   const getInfo = async () => {
-    const images = await serverService.getInfoPowderPoint();
-    setItems(images);
+    const response = await ServerModule.getInfoPowderPointImgs();
+    setImgs(response.data);
   };
 
   React.useLayoutEffect(() => {
@@ -45,7 +41,7 @@ export const PowderPoint = () => {
       <p className={style.exemple} style={{ color: color }}>
         Сдесь представленны примеры наших работ
       </p>
-      <SliderImg items={items} />
+      <SliderImg imgs={imgs} />
     </div>
   );
 };

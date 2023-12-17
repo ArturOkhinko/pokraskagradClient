@@ -3,9 +3,10 @@ import style from "./TruckService.module.css";
 import { Price } from "../Price/Price";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { serverService } from "../../services/serverService";
 import { truckWheelInfoImg } from "../../Data/TruckWheelInfoImg";
 import { pushInfo } from "../../store/reducers/infoWheelsReducer";
+import { WheelInfoResponse } from "../../models/responce/WheelInfoResponse";
+import { ServerModule } from "../../modules/serverModule";
 
 type InfoAboutPrice = {
   defaultValue: string;
@@ -16,24 +17,11 @@ type InfoAboutPrice = {
   text: string;
 };
 export const TrukService = () => {
-  const [price, setPrice] = React.useState<WheelPriceJSONType[]>([]);
+  const [price, setPrice] = React.useState<WheelInfoResponse[]>([]);
 
-  const dispatch = useDispatch();
   const getInfo = async () => {
-    const info: InfoAboutPrice[] = await serverService.getInfoTruckWheels();
-    const price: WheelPriceJSONType[] = info.map((element) => {
-      return {
-        id: element.id,
-        price: element.price,
-        model: element.radius,
-        name: element.name,
-        text: element.text,
-        initialPriceCount: Number(element.defaultValue),
-        img: truckWheelInfoImg[element.radius],
-      };
-    });
-    setPrice(price);
-    dispatch(pushInfo(price));
+    const response = await ServerModule.getInfoTruckWheel();
+    setPrice(response.data);
   };
 
   React.useEffect(() => {
@@ -56,7 +44,7 @@ export const TrukService = () => {
           каталог цен на пескоструй
         </Link>
       </p>
-      <Price price={price} setPrice={setPrice} />
+      <Price items={price} setItems={setPrice} />
     </div>
   );
 };

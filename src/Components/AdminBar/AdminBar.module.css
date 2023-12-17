@@ -49,6 +49,27 @@
 .admin p {
   margin: 2px;
 }
+
+.comeInLink {
+  text-decoration: none;
+  color: rgb(0, 111, 111);
+}
+.comeInToAcc button {
+  width: calc(100% - 20px);
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 1s;
+  text-decoration: none;
+}
+.comeInToAcc button:hover {
+  background-color: rgb(26, 45, 45);
+  color: white;
+}
+
 @media (max-width: 800px) {
   .mainLinks .link {
     font-size: 22px;

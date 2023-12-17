@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import style from "../Supports/Supports.module.css";
-import { Price } from "../Price/Price";
-import { serverService } from "../../services/serverService";
-import { useDispatch } from "react-redux";
-import { pushInfo } from "../../store/reducers/infoWheelsReducer";
+import { ServerModule } from "../../modules/serverModule";
+import { SupportsResponse } from "../../models/responce/SupportsInfoResponse";
 
 type Supports = {
   id: string;
@@ -14,28 +12,12 @@ type Supports = {
   img: string;
 };
 export const Supports: FC = () => {
-  const [price, setPrice] = React.useState<SupportsType[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const dispatch = useDispatch();
+  const [price, setPrice] = React.useState<SupportsResponse[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const getInfo = async () => {
-    const info: Supports[] = await serverService.getInfoSupports();
-    const priceInfo = info.map((element) => {
-      const img = element.img.split(",");
-      return {
-        price: element.price,
-        name: element.name,
-        id: element.id,
-        text: element.text,
-        initialPriceCount: Number(element.defaultValue),
-        img: img.length === 1 ? img[0] : img,
-      };
-    });
-    if (priceInfo) {
-      dispatch(pushInfo(priceInfo));
-      setPrice(priceInfo);
-      setLoading(false);
-    }
+    const response = await ServerModule.getInfoSupports();
+    setPrice(response.data);
   };
 
   React.useEffect(() => {
@@ -48,11 +30,7 @@ export const Supports: FC = () => {
         <p></p>
       </div>
       <div className={style.support}>
-        {price && !loading ? (
-          <Price price={price} setPrice={setPrice} />
-        ) : (
-          <p>Загрузка</p>
-        )}
+        {price && !isLoading ? <p></p> : <p>Загрузка</p>}
       </div>
     </div>
   );

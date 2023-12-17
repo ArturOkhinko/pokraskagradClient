@@ -1,4 +1,4 @@
-type DataType = ColorJSONType | SandblastJSONType | WheelPriceJSONType;
+type DataType = ColorJSONType | SandblastJSONType;
 
 type ColorJSONType = {
   RAL: string;
@@ -11,16 +11,6 @@ type SandblastJSONType = {
   nameSandblast: string;
   priceSandblast: number;
 };
-
-type WheelPriceJSONType = {
-  price: number;
-  model?: string;
-  name: string;
-  id: string;
-  text: string;
-  img?: string | string[];
-  initialPriceCount: number;
-};
 type SupportsType = {
   name: string;
   text: string;
@@ -29,5 +19,4 @@ type SupportsType = {
   initialPriceCount: number;
 };
 
-type ReadOnlyWheelPrice = readonly WheelPriceJSONType[];
 type ReadOnlySupportsType = readonly SupportsType[];
