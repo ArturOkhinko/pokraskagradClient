@@ -66,15 +66,9 @@ export default function NavBar() {
       </div>
       {role.role ? (
         <div className={style.role}>
-          {role.role === "admin" ? (
-            <Link to="/admin" className={style.admin}>
-              <p>{role.email}</p>
-            </Link>
-          ) : (
-            <Link to="/user" className={style.user} style={{ color: color }}>
-              <p>{role.email}</p>
-            </Link>
-          )}
+          <Link to="/admin" className={style.admin}>
+            <p>{role.email}</p>
+          </Link>
         </div>
       ) : null}
       <div className={style.price}>
