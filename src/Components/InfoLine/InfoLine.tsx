@@ -5,17 +5,9 @@ import { FC } from "react";
 import { Line } from "../Line/Line";
 import { useSelector } from "react-redux";
 import { ServerModule } from "../../modules/serverModule";
-import { mainDescriptionState } from "../../models/states/mainDescriptionState";
-
-type InfoOfLineType = {
-  img: string[];
-  header: string;
-  description: string;
-  id: string;
-};
 
 export const InfoLine: FC = () => {
-  const [infoOfLine, setInfoOfLine] =
+  const { 0: infoOfLine, 1: setInfoOfLine } =
     React.useState<DescriptionPostResponce[]>();
 
   const getInfo = async () => {

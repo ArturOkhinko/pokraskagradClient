@@ -3,7 +3,6 @@ import style from "../ServiceChoice/ServiceChoice.module.css";
 import { ServiceCatalog } from "../ServiceCatalog/ServiceCatalog";
 import wheels from "../../img/Whels.png";
 import TrukWheel from "../../img/TrukWheel.png";
-import support from "../../img/Support.png";
 import colorPowder from "../../img/colorPowder.png";
 import sandblast from "../../img/sandblast.jpeg";
 import { useSelector } from "react-redux";
@@ -21,12 +20,6 @@ export default function ServiceChoice() {
       name: "Пескоструй и покраска дисков для грузоввых автомобилей",
       text: "Цена указана за покраску дисков и пескоструй. Перед покраской дисков необходимо их пескоструить ведь иначе работа будет не качественной, а так как мы всегда выполняем свою работу максимально качественно, мы всегда пескоструим диски.",
       link: "/trukService",
-    },
-    {
-      img: support,
-      name: "Пескоструй и покраска суппортов",
-      text: "Цена за покраску и(или) пескоструй супортов не зависит от размера. Любой размер по одной маленькой цене",
-      link: "/serviceSupports",
     },
     {
       img: colorPowder,

@@ -14,6 +14,13 @@ import {
 import { Color } from "../Color/Color";
 import ButtonBurger from "../ButtonBurger/ButtonBurger";
 import { CountPrice } from "../CountPrice/CountPrice";
+
+type Role = {
+  login: boolean;
+  email: string;
+  role: string;
+};
+
 export default function NavBar() {
   const [colorArr, setColorsArr] = React.useState([
     { color: "rgb(255, 88, 51)", colorFunction: red },
@@ -22,12 +29,6 @@ export default function NavBar() {
     { color: "greenyellow", colorFunction: green },
     { color: "orange", colorFunction: orange },
   ]);
-
-  type Role = {
-    login: boolean;
-    email: string;
-    role: string;
-  };
   const role: Role = useSelector(
     (state: AccLogReducerType) => state.accLog.user
   );

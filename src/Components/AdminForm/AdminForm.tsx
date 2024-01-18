@@ -14,17 +14,8 @@ interface AdminForm {
   };
   buttonText: string;
 }
-type status = {
-  status: number;
-  role: string;
-  email?: string;
-  message: string;
-  accessToken: string;
-  refreshToken: string;
-};
 export const AdminForm: FC<AdminForm> = ({
   header,
-  linkToFetch,
   anotherPage,
   buttonText,
 }) => {

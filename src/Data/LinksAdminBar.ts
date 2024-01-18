@@ -25,11 +25,6 @@ export const linksAdminBar: linkAdminBar[] = [
     name: "Диски от грузовых колес",
   },
   {
-    link: "/supportAdmin",
-    img: "https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/supports.jpeg",
-    name: "Супорта",
-  },
-  {
     link: "/powderPointAdmin",
     img: "https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/exempleWorkes.jpeg",
     name: "Порошковая покраска",
@@ -41,7 +36,7 @@ export const linksAdminBar: linkAdminBar[] = [
   },
   {
     link: "/discountVK",
-    img: "https://storage.yandexcloud.net/pokraskagrad.ru/AdminBar/DescriptionCompanu.jpeg",
+    img: "https://storage.yandexcloud.net/pokraskagrad.ru/vk.png",
     name: "скидки VK",
   },
 ];

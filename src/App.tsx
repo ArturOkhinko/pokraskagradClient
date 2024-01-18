@@ -9,7 +9,6 @@ import ColorChoice from "./Components/ColorChoice/ColorChoice";
 import ServiceChoice from "./Components/ServiceChoice/ServiceChoice";
 import { WheelInfo } from "./Components/WheelInfo/WheelInfo";
 import Sandblast from "./Components/Sandblast/Sandblast";
-import { Supports } from "./Components/Supports/Supports";
 import { Footer } from "./Components/Footer/Footer";
 import { PowderPoint } from "./Components/PowderPoint/PowderPoint";
 import { TrukService } from "./Components/TrukWheelService/TrukService";
@@ -22,7 +21,6 @@ import { useDispatch } from "react-redux";
 import { login } from "./store/reducers/accauntReducer";
 import { WheelInfoAdmin } from "./Components/WheelInfoAdmin/WheelInfoAdmin";
 import { TruckWheelInfo } from "./Components/trukWheelInfoAdmin/TrukWheelInfoAdmin";
-import { SupportAdmin } from "./Components/SupportAdmin/SupportAdmin";
 import { SandblastAdmin } from "./Components/SanblastAdmin/SandblastAdmin";
 import { PowderPointAdmin } from "./Components/PowderPointAdmin/PowderPointAdmin";
 import { DiscountVK } from "./Components/DiscountVK/DiscountVK";
@@ -76,7 +74,6 @@ export const App: FC = () => {
           <Route path="/serviceChoice" element={<ServiceChoice />} />
           <Route path="/wheelInfo" element={<WheelInfo />} />
           <Route path="/serviceSandblast" element={<Sandblast />} />
-          <Route path="/serviceSupports" element={<Supports />} />
           <Route path="/powderPoint" element={<PowderPoint />} />
           <Route path="/trukService" element={<TrukService />} />
           <Route path="/registration" element={<Registration />} />
@@ -86,7 +83,6 @@ export const App: FC = () => {
           <Route path="/descriptionPost" element={<DescriptionPost />} />
           <Route path="/wheelInfoAdmin" element={<WheelInfoAdmin />} />
           <Route path="/truckWheelInfoAdmin" element={<TruckWheelInfo />} />
-          <Route path="/supportAdmin" element={<SupportAdmin />} />
           <Route path="/sandblastAdmin" element={<SandblastAdmin />} />
           <Route path="/powderPointAdmin" element={<PowderPointAdmin />} />
           <Route path="/discountVK" element={<DiscountVK />} />
