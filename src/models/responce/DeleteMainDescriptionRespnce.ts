@@ -1,3 +1,0 @@
-interface DeleteMainDescriptionResponce {
-  message: string;
-}

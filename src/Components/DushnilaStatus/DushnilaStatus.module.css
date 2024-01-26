@@ -1,0 +1,40 @@
+.main {
+  border-radius: var(--border-radius-elements);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ok {
+  background: #7affa7;
+}
+
+.danger {
+  background: #ff8a7a;
+}
+.status {
+  color: #000;
+  font-size: 4vw;
+  margin: 10px 10px 0 40px;
+}
+
+.reason {
+  color: #000;
+  font-size: 2vw;
+  margin: 40px 0 20px 40px;
+}
+
+@media (max-width: 768px) {
+  .status {
+    color: #000;
+    font-size: 7vw;
+    margin: 20px 20px 0 40px;
+  }
+
+  .reason {
+    color: #000;
+    font-size: 4vw;
+    margin: 40px 0 20px 40px;
+  }
+}

@@ -1,3 +1,0 @@
-type SearchReducerInitialStateType = {
-  bD: DataType[];
-};

@@ -1,0 +1,26 @@
+.myButton {
+  max-width: 100%;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  padding: 15px 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #000;
+  background-color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+.myButton .nameButton {
+  color: #000;
+  font-size: 16px;
+  margin: 0 10px 0 0;
+}
+.myButton:hover {
+  background-color: #000000;
+  color: white;
+}
+.myButton:hover p {
+  color: white;
+}
